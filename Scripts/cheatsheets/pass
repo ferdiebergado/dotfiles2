@@ -1,0 +1,57 @@
+[48;5;8m[24m cheat:pass [24m[0m
+[38;5;246;03m# Initalize password store using a gpg id:[39;00m
+[38;5;252mpass[39m[38;5;252m [39m[38;5;252minit[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mgpg-id>[39m
+
+[38;5;246;03m# Reencrypt data in subdirectory:[39;00m
+[38;5;252mpass[39m[38;5;252m [39m[38;5;252minit[39m[38;5;252m [39m[38;5;252m-p[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mpath-to-directory>[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mgpg-id-1>[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mgpg-id-2>[39m
+
+[38;5;246;03m# Insert (Create or overwrite) data into a file:[39;00m
+[38;5;252mpass[39m[38;5;252m [39m[38;5;252minsert[39m[38;5;252m [39m[38;5;252m[[39m[38;5;252m-m[39m[38;5;252m|[39m[38;5;252m--multiline[39m[38;5;252m][39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mpath-to-data>[39m
+
+[38;5;246;03m# Automatically generate a password of length n:[39;00m
+[38;5;252mpass[39m[38;5;252m [39m[38;5;252mgenerate[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mpath-to-data>[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mn>[39m
+
+[38;5;246;03m# Show password store:[39;00m
+[38;5;252mpass[39m
+
+[38;5;246;03m# Edit an entry:[39;00m
+[38;5;252mpass[39m[38;5;252m [39m[38;5;252medit[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mpath-to-data>[39m
+
+[38;5;246;03m# Display content of an entry:[39;00m
+[38;5;252mpass[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mpath-to-data>[39m
+
+[38;5;246;03m# Copy line n of entry to clipboard (Line 0 if none if specified):[39;00m
+[38;5;252mpass[39m[38;5;252m [39m[38;5;252m-c[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mn>[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mpath-to-data>[39m
+
+[38;5;246;03m# Initalize a git repository (All changes made by pass will be committed automatically)[39;00m
+[38;5;252mpass[39m[38;5;252m [39m[38;5;252mgit[39m[38;5;252m [39m[38;5;252minit[39m
+
+[48;5;8m[24m tldr:pass [24m[0m
+[38;5;246;03m# pass[39;00m
+[38;5;246;03m# Tool for storing and reading passwords or other sensitive data.[39;00m
+[38;5;246;03m# All data is GPG-encrypted, and managed with a Git repository.[39;00m
+[38;5;246;03m# More information: <https://www.passwordstore.org>.[39;00m
+
+[38;5;246;03m# Initialize (or re-encrypt) the storage using one or more GPG IDs:[39;00m
+[38;5;252mpass[39m[38;5;252m [39m[38;5;252minit[39m[38;5;252m [39m[38;5;252mgpg_id_1[39m[38;5;252m [39m[38;5;252mgpg_id_2[39m
+
+[38;5;246;03m# Save a new password and additional information (press Ctrl + D on a new line to complete):[39;00m
+[38;5;252mpass[39m[38;5;252m [39m[38;5;252minsert[39m[38;5;252m [39m[38;5;252m--multiline[39m[38;5;252m [39m[38;5;252mpath/to/data[39m
+
+[38;5;246;03m# Edit an entry:[39;00m
+[38;5;252mpass[39m[38;5;252m [39m[38;5;252medit[39m[38;5;252m [39m[38;5;252mpath/to/data[39m
+
+[38;5;246;03m# Copy a password (first line of the data file) to the clipboard:[39;00m
+[38;5;252mpass[39m[38;5;252m [39m[38;5;252m-c[39m[38;5;252m [39m[38;5;252mpath/to/data[39m
+
+[38;5;246;03m# List the whole store tree:[39;00m
+[38;5;252mpass[39m
+
+[38;5;246;03m# Generate a new random password with a given length, and copy it to the clipboard:[39;00m
+[38;5;252mpass[39m[38;5;252m [39m[38;5;252mgenerate[39m[38;5;252m [39m[38;5;252m-c[39m[38;5;252m [39m[38;5;252mpath/to/data[39m[38;5;252m [39m[38;5;252mnum[39m
+
+[38;5;246;03m# Initialize a new Git repository (any changes done by pass will be committed automatically):[39;00m
+[38;5;252mpass[39m[38;5;252m [39m[38;5;252mgit[39m[38;5;252m [39m[38;5;252minit[39m
+
+[38;5;246;03m# Run a Git command on behalf of the password storage:[39;00m
+[38;5;252mpass[39m[38;5;252m [39m[38;5;252mgit[39m[38;5;252m [39m[38;5;31mcommand[39m

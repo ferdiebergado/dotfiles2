@@ -1,0 +1,6 @@
+[38;5;246;03m# mkfifo[39;00m
+[38;5;246;03m# Makes FIFOs (named pipes).[39;00m
+[38;5;246;03m# More information: <https://www.gnu.org/software/coreutils/mkfifo>.[39;00m
+
+[38;5;246;03m# Create a named pipe at a given path:[39;00m
+[38;5;252mmkfifo[39m[38;5;252m [39m[38;5;252mpath/to/pipe[39m

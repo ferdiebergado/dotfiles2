@@ -1,0 +1,8 @@
+[Unit]
+Description=Adaptive Backlight Daemon
+
+[Service]
+ExecStart=/home/d0np0br3/Scripts/adapt_backlight.sh
+
+[Install]
+WantedBy=default.target

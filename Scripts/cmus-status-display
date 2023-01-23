@@ -1,0 +1,111 @@
+#!/bin/sh
+#
+# cmus-status-display
+#
+# Usage:
+#   in cmus command ":set status_display_program=cmus-status-display"
+#
+# This scripts is executed by cmus when status changes:
+#   cmus-status-display key1 val1 key2 val2 ...
+#
+# All keys contain only chars a-z. Values are UTF-8 strings.
+#
+# Keys: status file url artist album discnumber tracknumber title date
+#   - status (stopped, playing, paused) is always given
+#   - file or url is given only if track is 'loaded' in cmus
+#   - other keys/values are given only if they are available
+#
+# echo -e "\n$*" >>/tmp/cmus.txt
+
+output() {
+	# write status to ~/cmus-status.txt (not very useful though)
+	# echo "$*" >>~/cmus-status.txt 2>&1
+	local nid='/tmp/cmus_id'
+	local cover='/home/d0np0br3/Pictures/icons/cover.png'
+	local albumdir='/home/d0np0br3/Pictures/albumarts/'
+	# local front='/tmp/FRONT_COVER.jpg'
+	local filename="$(basename "$_file")"
+	local front="$albumdir${filename%.*}.jpg"
+	#rm -f $front >/dev/null 2>&1
+
+	# Save metadata and cover art to a temporary directory
+	# eyeD3 -Q --write-images /tmp "$_file" >/dev/null 2>&1
+	#
+
+	if [[ ! -f $front ]]; then
+		ffmpeg -v 0 -i "$_file" -an -c:v copy "$front"
+
+		test -f "$front" && cover="$front"
+	fi
+
+	notify-send.sh -R $nid -i "$cover" "$_status" "$1"
+
+	# WMI (http://wmi.modprobe.de/)
+	#wmiremote -t "$*" &> /dev/null
+}
+
+while test $# -ge 2; do
+	eval _$1='$2'
+	shift
+	shift
+done
+
+case "$_status" in
+'playing')
+	_status='Now Playing'
+	;;
+'paused')
+	_status='Paused'
+	;;
+'stopped')
+	_status='Stopped'
+	;;
+'exiting')
+	_status='Exiting'
+	;;
+esac
+
+echo "(B4 TEST) STATUS: $_status FILE: $_file URL: $url TITLE: '$_title' ARTIST: $_artist ALBUM: $_album DATE: $_date $duration" >>/tmp/cmus.txt
+
+if test -n "$_file"; then
+	echo "(IN TEST) STATUS: $_status FILE: $_file URL: $url TITLE: '$_title' ARTIST: $_artist ALBUM: $_album DATE: $_date $duration" >>/tmp/cmus.txt
+
+	if [[ -z ${_date+x} ]]; then
+
+		filename="$(basename "$_file")"
+		filename="${filename%.*}"
+
+		info="$filename"
+
+		if [[ $filename == *-* ]]; then
+
+			_title="$(echo $filename | cut -d- -f2 | sed 's/^ *//g')"
+			_artist="$(echo $filename | cut -d- -f1)"
+
+			info="$_title\n$_artist"
+		fi
+
+		output "$info"
+
+	else
+
+		# h=$(($_duration / 3600))
+		# m=$(($_duration % 3600))
+
+		# duration=""
+		# test $h -gt 0 && dur="$h:"
+		# duration="$dur$(printf '%02d:%02d' $(($m / 60)) $(($m % 60)))"
+
+		[[ -z $_artist ]] && _artist='Unknown Artist'
+		[[ -z $_album ]] && _album='Unknown Album'
+
+		info="$_title\n$_artist\n$_album\n$_date"
+
+		output "$info"
+	fi
+
+elif test -n "$_url"; then
+	output "[$_status] $_url - $_title"
+else
+	output "[$_status]"
+fi

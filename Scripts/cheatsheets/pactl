@@ -1,0 +1,45 @@
+[48;5;8m[24m cheat.sheets:pactl [24m[0m
+[38;5;246;03m# pactl[39;00m
+[38;5;246;03m# Control a running PulseAudio sound server[39;00m
+
+[38;5;246;03m# Display a sorted and uniq-ified list of PulseAudio modules, using AWK.[39;00m
+[38;5;252mpactl[39m[38;5;252m [39m[38;5;252mlist[39m[38;5;252m [39m[38;5;252mmodules[39m[38;5;252m [39m[38;5;252mshort[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mawk[39m[38;5;252m [39m[38;5;214m'{!Lines[$2]++} END {asorti(Lines, Sorted); for (Line in Sorted) print(Sorted[Line])}'[39m
+
+[38;5;246;03m# Load a module.[39;00m
+[38;5;252mpactl[39m[38;5;252m [39m[38;5;252mload-module[39m[38;5;252m [39m[38;5;252mMODULE[39m
+[38;5;246;03m# Unload a module.[39;00m
+[38;5;252mpactl[39m[38;5;252m [39m[38;5;252munload-module[39m[38;5;252m [39m[38;5;252mMODULE[39m
+
+[48;5;8m[24m cheat:pactl [24m[0m
+[38;5;252m---[39m
+[38;5;252msyntax:[39m[38;5;252m [39m[38;5;252mbash[39m
+[38;5;252mtags:[39m[38;5;252m [39m[38;5;252m[[39m[38;5;252m [39m[38;5;252maudio,[39m[38;5;252m [39m[38;5;252mpulseaudio[39m[38;5;252m [39m[38;5;252m][39m
+[38;5;252m---[39m
+[38;5;246;03m# INCREASE the volume of default sink by 2.5%[39;00m
+[38;5;252mpactl[39m[38;5;252m [39m[38;5;252mset-sink-volume[39m[38;5;252m [39m[38;5;252m@DEFAULT_SINK@[39m[38;5;252m [39m[38;5;252m+2.5%[39m
+
+[38;5;246;03m# DECREASE the volume of default sink by 2.5%[39;00m
+[38;5;252mpactl[39m[38;5;252m [39m[38;5;252mset-sink-volume[39m[38;5;252m [39m[38;5;252m@DEFAULT_SINK@[39m[38;5;252m [39m[38;5;252m-2.5%[39m
+
+[38;5;246;03m# Toggle mute the default sink[39;00m
+[38;5;252mpactl[39m[38;5;252m [39m[38;5;252mset-sink-mute[39m[38;5;252m [39m[38;5;252m@DEFAULT_SINK@[39m[38;5;252m [39m[38;5;252mtoggle[39m
+
+[48;5;8m[24m tldr:pactl [24m[0m
+[38;5;246;03m# pactl[39;00m
+[38;5;246;03m# Control a running PulseAudio sound server.[39;00m
+[38;5;246;03m# More information: <https://manned.org/pactl>.[39;00m
+
+[38;5;246;03m# List all sinks (or other types - sinks are outputs and sink-inputs are active audio streams):[39;00m
+[38;5;252mpactl[39m[38;5;252m [39m[38;5;252mlist[39m[38;5;252m [39m[38;5;252msinks[39m[38;5;252m [39m[38;5;252mshort[39m
+
+[38;5;246;03m# Change the default sink (output) to 1 (the number can be retrieved via the `list` subcommand):[39;00m
+[38;5;252mpactl[39m[38;5;252m [39m[38;5;252mset-default-sink[39m[38;5;252m [39m[38;5;67m1[39m
+
+[38;5;246;03m# Move sink-input 627 to sink 1:[39;00m
+[38;5;252mpactl[39m[38;5;252m [39m[38;5;252mmove-sink-input[39m[38;5;252m [39m[38;5;67m627[39m[38;5;252m [39m[38;5;67m1[39m
+
+[38;5;246;03m# Set the volume of sink 1 to 75%:[39;00m
+[38;5;252mpactl[39m[38;5;252m [39m[38;5;252mset-sink-volume[39m[38;5;252m [39m[38;5;67m1[39m[38;5;252m [39m[38;5;67m0[39m[38;5;252m.75[39m
+
+[38;5;246;03m# Toggle mute on the default sink (using the special name `@DEFAULT_SINK@`):[39;00m
+[38;5;252mpactl[39m[38;5;252m [39m[38;5;252mset-sink-mute[39m[38;5;252m [39m[38;5;252m@DEFAULT_SINK@[39m[38;5;252m [39m[38;5;252mtoggle[39m

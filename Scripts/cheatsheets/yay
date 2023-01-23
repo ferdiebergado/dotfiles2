@@ -1,0 +1,61 @@
+[48;5;8m[24m cheat.sheets:yay [24m[0m
+[38;5;246;03m# yay[39;00m
+[38;5;246;03m# Yet another yogurt. Pacman wrapper and AUR helper written in go.[39;00m
+
+[38;5;246;03m# present package selection menu[39;00m
+[38;5;252myay[39m[38;5;252m [39m[38;5;252m[[39m[38;5;252mSearch[39m[38;5;252m [39m[38;5;252mTerm[39m[38;5;252m][39m
+
+[38;5;246;03m# print system statistics[39;00m
+[38;5;252myay[39m[38;5;252m [39m[38;5;252m-Ps[39m
+
+[38;5;246;03m# print update list[39;00m
+[38;5;252myay[39m[38;5;252m [39m[38;5;252m-Pu[39m
+
+[38;5;246;03m# clean unneeded dependencies[39;00m
+[38;5;252myay[39m[38;5;252m [39m[38;5;252m-Yc[39m
+
+[38;5;246;03m# downloads PKGBUILD from ABS or AUR[39;00m
+[38;5;252myay[39m[38;5;252m [39m[38;5;252m-G[39m
+
+[38;5;246;03m# generates development package[39;00m
+[38;5;246;03m# DB used for devel updates.[39;00m
+[38;5;252myay[39m[38;5;252m [39m[38;5;252m-Y[39m[38;5;252m [39m[38;5;252m--gendb[39m
+
+[38;5;246;03m# normal update but also check for development package updates[39;00m
+[38;5;246;03m# and use PKGBUILD modification time and not version to determine update[39;00m
+[38;5;252myay[39m[38;5;252m [39m[38;5;252m-Syu[39m[38;5;252m [39m[38;5;252m--devel[39m[38;5;252m [39m[38;5;252m--timeupdate[39m
+
+[38;5;246;03m# installation[39;00m
+[38;5;252mgit[39m[38;5;252m [39m[38;5;252mclone[39m[38;5;252m [39m[38;5;252mhttps://aur.archlinux.org/yay.git[39m
+[38;5;31mcd[39m[38;5;252m [39m[38;5;252myay[39m
+[38;5;252mmakepkg[39m[38;5;252m [39m[38;5;252m-si[39m
+
+[48;5;8m[24m tldr:yay [24m[0m
+[38;5;246;03m# yay[39;00m
+[38;5;246;03m# Yet Another Yogurt: A utility for Arch Linux to build and install packages from the Arch User Repository.[39;00m
+[38;5;246;03m# Also see `pacman`.[39;00m
+[38;5;246;03m# More information: <https://github.com/Jguer/yay>.[39;00m
+
+[38;5;246;03m# Interactively search and install packages from the repos and AUR:[39;00m
+[38;5;252myay[39m[38;5;252m [39m[38;5;252mpackage_name[39m[38;5;252m|[39m[38;5;252msearch_term[39m
+
+[38;5;246;03m# Synchronize and update all packages from the repos and AUR:[39;00m
+[38;5;252myay[39m
+
+[38;5;246;03m# Synchronize and update only AUR packages:[39;00m
+[38;5;252myay[39m[38;5;252m [39m[38;5;252m-Sua[39m
+
+[38;5;246;03m# Install a new package from the repos and AUR:[39;00m
+[38;5;252myay[39m[38;5;252m [39m[38;5;252m-S[39m[38;5;252m [39m[38;5;252mpackage_name[39m
+
+[38;5;246;03m# Remove an installed package and both its dependencies and configuration files:[39;00m
+[38;5;252myay[39m[38;5;252m [39m[38;5;252m-Rns[39m[38;5;252m [39m[38;5;252mpackage_name[39m
+
+[38;5;246;03m# Search the package database for a keyword from the repos and AUR:[39;00m
+[38;5;252myay[39m[38;5;252m [39m[38;5;252m-Ss[39m[38;5;252m [39m[38;5;252mkeyword[39m
+
+[38;5;246;03m# Remove orphaned packages (installed as dependencies but not required by any package):[39;00m
+[38;5;252myay[39m[38;5;252m [39m[38;5;252m-Yc[39m
+
+[38;5;246;03m# Show statistics for installed packages and system health:[39;00m
+[38;5;252myay[39m[38;5;252m [39m[38;5;252m-Ps[39m

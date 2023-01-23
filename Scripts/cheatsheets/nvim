@@ -1,0 +1,29 @@
+[38;5;246;03m# nvim[39;00m
+[38;5;246;03m# Neovim, a programmer's text editor based on Vim, provides several modes for different kinds of text manipulation.[39;00m
+[38;5;246;03m# Pressing `i` in normal mode enters insert mode. `<Esc>` goes back to normal mode, which doesn't allow regular text insertion.[39;00m
+[38;5;246;03m# See also `vim`, `vimtutor`, `vimdiff`.[39;00m
+[38;5;246;03m# More information: <https://neovim.io>.[39;00m
+
+[38;5;246;03m# Open a file:[39;00m
+[38;5;252mnvim[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Enter text editing mode (insert mode):[39;00m
+[38;5;252m<[39m[38;5;252mEsc>i[39m
+
+[38;5;246;03m# Copy ("yank") or cut ("delete") the current line (paste it with `P`):[39;00m
+[38;5;252m<[39m[38;5;252mEsc>yy[39m[38;5;252m|[39m[38;5;252mdd[39m
+
+[38;5;246;03m# Enter normal mode and undo the last operation:[39;00m
+[38;5;252m<[39m[38;5;252mEsc>u[39m
+
+[38;5;246;03m# Search for a pattern in the file (press `n`/`N` to go to next/previous match):[39;00m
+[38;5;252m<[39m[38;5;252mEsc>/search_pattern[39m[38;5;252m<[39m[38;5;252mEnter>[39m
+
+[38;5;246;03m# Perform a regular expression substitution in the whole file:[39;00m
+[38;5;252m<[39m[38;5;252mEsc>:%s/regular_expression/replacement/g[39m[38;5;252m<[39m[38;5;252mEnter>[39m
+
+[38;5;246;03m# Enter normal mode and save (write) the file, and quit:[39;00m
+[38;5;252m<[39m[38;5;252mEsc>:wq[39m[38;5;252m<[39m[38;5;252mEnter>[39m
+
+[38;5;246;03m# Quit without saving:[39;00m
+[38;5;252m<[39m[38;5;252mEsc>:q![39m[38;5;252m<[39m[38;5;252mEnter>[39m

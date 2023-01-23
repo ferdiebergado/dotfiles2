@@ -1,0 +1,73 @@
+[48;5;8m[24m cheat:iptables [24m[0m
+[38;5;252m---[39m
+[38;5;252mtags:[39m[38;5;252m [39m[38;5;252m[[39m[38;5;252m [39m[38;5;252mnetworking[39m[38;5;252m [39m[38;5;252m][39m
+[38;5;252m---[39m
+[38;5;246;03m# To show hit for rules with auto refresh:[39;00m
+[38;5;252mwatch[39m[38;5;252m [39m[38;5;252m--interval[39m[38;5;252m [39m[38;5;67m0[39m[38;5;252m [39m[38;5;214m'iptables -nvL | grep -v "0     0"'[39m
+
+[38;5;246;03m# To show hit for rule with auto refresh and highlight any changes since the last refresh:[39;00m
+[38;5;252mwatch[39m[38;5;252m [39m[38;5;252m-d[39m[38;5;252m [39m[38;5;252m-n[39m[38;5;252m [39m[38;5;67m2[39m[38;5;252m [39m[38;5;252miptables[39m[38;5;252m [39m[38;5;252m-nvL[39m
+
+[38;5;246;03m# To block port 902 and hide this port from nmap:[39;00m
+[38;5;252miptables[39m[38;5;252m [39m[38;5;252m-A[39m[38;5;252m [39m[38;5;252mINPUT[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252meth0[39m[38;5;252m [39m[38;5;252m-p[39m[38;5;252m [39m[38;5;252mtcp[39m[38;5;252m [39m[38;5;252m--dport[39m[38;5;252m [39m[38;5;67m902[39m[38;5;252m [39m[38;5;252m-j[39m[38;5;252m [39m[38;5;252mREJECT[39m[38;5;252m [39m[38;5;252m--reject-with[39m[38;5;252m [39m[38;5;252micmp-port-unreachable[39m
+
+[38;5;246;03m# Note, --reject-with accept:[39;00m
+[38;5;246;03m#	icmp-net-unreachable[39;00m
+[38;5;246;03m#	icmp-host-unreachable[39;00m
+[38;5;246;03m#	icmp-port-unreachable <- Hide a port to nmap[39;00m
+[38;5;246;03m#	icmp-proto-unreachable[39;00m
+[38;5;246;03m#	icmp-net-prohibited[39;00m
+[38;5;246;03m#	icmp-host-prohibited or[39;00m
+[38;5;246;03m#	icmp-admin-prohibited[39;00m
+[38;5;246;03m#	tcp-reset[39;00m
+
+[38;5;246;03m# To add a comment to a rule:[39;00m
+[38;5;252miptables[39m[38;5;252m [39m[38;5;252m...[39m[38;5;252m [39m[38;5;252m-m[39m[38;5;252m [39m[38;5;252mcomment[39m[38;5;252m [39m[38;5;252m--comment[39m[38;5;252m [39m[38;5;214m"This rule is here for this reason"[39m
+
+
+[38;5;246;03m# To remove or insert a rule:[39;00m
+[38;5;246;03m# 1) Show all rules[39;00m
+[38;5;252miptables[39m[38;5;252m [39m[38;5;252m-L[39m[38;5;252m [39m[38;5;252mINPUT[39m[38;5;252m [39m[38;5;252m--line-numbers[39m
+[38;5;246;03m# OR iptables -nL --line-numbers[39;00m
+
+[38;5;246;03m# Chain INPUT (policy ACCEPT)[39;00m
+[38;5;246;03m#     num  target prot opt source destination[39;00m
+[38;5;246;03m#     1    ACCEPT     udp  --  anywhere  anywhere             udp dpt:domain[39;00m
+[38;5;246;03m#     2    ACCEPT     tcp  --  anywhere  anywhere             tcp dpt:domain[39;00m
+[38;5;246;03m#     3    ACCEPT     udp  --  anywhere  anywhere             udp dpt:bootps[39;00m
+[38;5;246;03m#     4    ACCEPT     tcp  --  anywhere  anywhere             tcp dpt:bootps[39;00m
+
+[38;5;246;03m# 2.a) REMOVE (-D) a rule. (here an INPUT rule)[39;00m
+[38;5;252miptables[39m[38;5;252m [39m[38;5;252m-D[39m[38;5;252m [39m[38;5;252mINPUT[39m[38;5;252m [39m[38;5;67m2[39m
+
+[38;5;246;03m# 2.b) OR INSERT a rule.[39;00m
+[38;5;252miptables[39m[38;5;252m [39m[38;5;252m-I[39m[38;5;252m [39m[38;5;252mINPUT[39m[38;5;252m [39m[38;5;252m{[39m[38;5;252mLINE_NUMBER[39m[38;5;252m}[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252meth1[39m[38;5;252m [39m[38;5;252m-p[39m[38;5;252m [39m[38;5;252mtcp[39m[38;5;252m [39m[38;5;252m--dport[39m[38;5;252m [39m[38;5;67m21[39m[38;5;252m [39m[38;5;252m-s[39m[38;5;252m [39m[38;5;67m123[39m[38;5;252m.123.123.123[39m[38;5;252m [39m[38;5;252m-j[39m[38;5;252m [39m[38;5;252mACCEPT[39m[38;5;252m [39m[38;5;252m-m[39m[38;5;252m [39m[38;5;252mcomment[39m[38;5;252m [39m[38;5;252m--comment[39m[38;5;252m [39m[38;5;214m"This rule is here for this reason"[39m
+
+[48;5;8m[24m tldr:iptables [24m[0m
+[38;5;246;03m# iptables[39;00m
+[38;5;246;03m# Program that allows configuration of tables, chains and rules provided by the Linux kernel firewall.[39;00m
+[38;5;246;03m# More information: <https://www.netfilter.org/projects/iptables/>.[39;00m
+
+[38;5;246;03m# View chains, rules, and packet/byte counters for the filter table:[39;00m
+[38;5;252msudo[39m[38;5;252m [39m[38;5;252miptables[39m[38;5;252m [39m[38;5;252m-vnL[39m
+
+[38;5;246;03m# Set chain policy rule:[39;00m
+[38;5;252msudo[39m[38;5;252m [39m[38;5;252miptables[39m[38;5;252m [39m[38;5;252m-P[39m[38;5;252m [39m[38;5;252mchain[39m[38;5;252m [39m[38;5;252mrule[39m
+
+[38;5;246;03m# Append rule to chain policy for IP:[39;00m
+[38;5;252msudo[39m[38;5;252m [39m[38;5;252miptables[39m[38;5;252m [39m[38;5;252m-A[39m[38;5;252m [39m[38;5;252mchain[39m[38;5;252m [39m[38;5;252m-s[39m[38;5;252m [39m[38;5;252mip[39m[38;5;252m [39m[38;5;252m-j[39m[38;5;252m [39m[38;5;252mrule[39m
+
+[38;5;246;03m# Append rule to chain policy for IP considering protocol and port:[39;00m
+[38;5;252msudo[39m[38;5;252m [39m[38;5;252miptables[39m[38;5;252m [39m[38;5;252m-A[39m[38;5;252m [39m[38;5;252mchain[39m[38;5;252m [39m[38;5;252m-s[39m[38;5;252m [39m[38;5;252mip[39m[38;5;252m [39m[38;5;252m-p[39m[38;5;252m [39m[38;5;252mprotocol[39m[38;5;252m [39m[38;5;252m--dport[39m[38;5;252m [39m[38;5;252mport[39m[38;5;252m [39m[38;5;252m-j[39m[38;5;252m [39m[38;5;252mrule[39m
+
+[38;5;246;03m# Add a NAT rule to translate all traffic from the `192.168.0.0/24` subnet to the host's public IP:[39;00m
+[38;5;252msudo[39m[38;5;252m [39m[38;5;252miptables[39m[38;5;252m [39m[38;5;252m-t[39m[38;5;252m [39m[38;5;252mnat[39m[38;5;252m [39m[38;5;252m-A[39m[38;5;252m [39m[38;5;252mPOSTROUTING[39m[38;5;252m [39m[38;5;252m-s[39m[38;5;252m [39m[38;5;67m192[39m[38;5;252m.168.0.0/24[39m[38;5;252m [39m[38;5;252m-j[39m[38;5;252m [39m[38;5;252mMASQUERADE[39m
+
+[38;5;246;03m# Delete chain rule:[39;00m
+[38;5;252msudo[39m[38;5;252m [39m[38;5;252miptables[39m[38;5;252m [39m[38;5;252m-D[39m[38;5;252m [39m[38;5;252mchain[39m[38;5;252m [39m[38;5;252mrule_line_number[39m
+
+[38;5;246;03m# Save iptables configuration of a given table to a file:[39;00m
+[38;5;252msudo[39m[38;5;252m [39m[38;5;252miptables-save[39m[38;5;252m [39m[38;5;252m-t[39m[38;5;252m [39m[38;5;252mtablename[39m[38;5;252m [39m[38;5;252m>[39m[38;5;252m [39m[38;5;252mpath/to/iptables_file[39m
+
+[38;5;246;03m# Restore iptables configuration from a file:[39;00m
+[38;5;252msudo[39m[38;5;252m [39m[38;5;252miptables-restore[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252m [39m[38;5;252mpath/to/iptables_file[39m

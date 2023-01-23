@@ -1,0 +1,49 @@
+[48;5;8m[24m cheat:tr [24m[0m
+[38;5;246;03m# To replace : with a new line:[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;87m$PATH[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtr[39m[38;5;252m [39m[38;5;214m":"[39m[38;5;252m [39m[38;5;214m"\n"[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;87m$PATH[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtr[39m[38;5;252m [39m[38;5;252m-t[39m[38;5;252m [39m[38;5;214m":"[39m[38;5;252m [39m[38;5;214m\n[39m[38;5;252m [39m
+
+[38;5;246;03m# To remove all occurance of "ab":[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;252maabbcc[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtr[39m[38;5;252m [39m[38;5;252m-d[39m[38;5;252m [39m[38;5;214m"ab"[39m[38;5;252m         [39m[38;5;246;03m# ouput: cc[39;00m
+
+[38;5;246;03m# To complement "aa":[39;00m
+[38;5;246;03m# ("Complement" means to keep "aa", and replace all others with "x")[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;252maabbccd[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtr[39m[38;5;252m [39m[38;5;252m-c[39m[38;5;252m [39m[38;5;214m"aa"[39m[38;5;252m [39m[38;5;252mx[39m[38;5;252m       [39m[38;5;246;03m# output: aaxxxxx (no newline)[39;00m
+
+[38;5;246;03m# To complement "ab\n":[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;252maabbccd[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtr[39m[38;5;252m [39m[38;5;252m-c[39m[38;5;252m [39m[38;5;214m"ab\n"[39m[38;5;252m [39m[38;5;252mx[39m[38;5;252m    [39m[38;5;246;03m#output: aabbxxx (with newline)[39;00m
+
+[38;5;246;03m# To preserve all alpha(-c). ":-[:digit:] etc" will be translated to "\n". sequeeze mode:[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;87m$PATH[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtr[39m[38;5;252m [39m[38;5;252m-cs[39m[38;5;252m [39m[38;5;214m"[:alpha:]"[39m[38;5;252m [39m[38;5;214m"\n"[39m[38;5;252m [39m
+
+[38;5;246;03m# To convert an ordered list to an unordered list:[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"1. /usr/bin\n2. /bin"[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtr[39m[38;5;252m [39m[38;5;252m-cs[39m[38;5;252m [39m[38;5;214m" /[:alpha:]\n"[39m[38;5;252m [39m[38;5;214m"+"[39m
+
+[38;5;246;03m# To remove all NULLs:[39;00m
+[38;5;252mtr[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252m [39m[38;5;252mfile-with-nulls[39m[38;5;252m [39m[38;5;252m-d[39m[38;5;252m [39m[38;5;214m'\000'[39m[38;5;252m [39m[38;5;252m>[39m[38;5;252m [39m[38;5;252mfile-without-nulls[39m
+
+[48;5;8m[24m tldr:tr [24m[0m
+[38;5;246;03m# tr[39;00m
+[38;5;246;03m# Translate characters: run replacements based on single characters and character sets.[39;00m
+[38;5;246;03m# More information: <https://www.gnu.org/software/coreutils/tr>.[39;00m
+
+[38;5;246;03m# Replace all occurrences of a character in a file, and print the result:[39;00m
+[38;5;252mtr[39m[38;5;252m [39m[38;5;252mfind_character[39m[38;5;252m [39m[38;5;252mreplace_character[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Replace all occurrences of a character from another command's output:[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;252mtext[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtr[39m[38;5;252m [39m[38;5;252mfind_character[39m[38;5;252m [39m[38;5;252mreplace_character[39m
+
+[38;5;246;03m# Map each character of the first set to the corresponding character of the second set:[39;00m
+[38;5;252mtr[39m[38;5;252m [39m[38;5;214m'abcd'[39m[38;5;252m [39m[38;5;214m'jkmn'[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Delete all occurrences of the specified set of characters from the input:[39;00m
+[38;5;252mtr[39m[38;5;252m [39m[38;5;252m-d[39m[38;5;252m [39m[38;5;214m'input_characters'[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Compress a series of identical characters to a single character:[39;00m
+[38;5;252mtr[39m[38;5;252m [39m[38;5;252m-s[39m[38;5;252m [39m[38;5;214m'input_characters'[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Translate the contents of a file to upper-case:[39;00m
+[38;5;252mtr[39m[38;5;252m [39m[38;5;214m"[:lower:]"[39m[38;5;252m [39m[38;5;214m"[:upper:]"[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Strip out non-printable characters from a file:[39;00m
+[38;5;252mtr[39m[38;5;252m [39m[38;5;252m-cd[39m[38;5;252m [39m[38;5;214m"[:print:]"[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252m [39m[38;5;252mpath/to/file[39m

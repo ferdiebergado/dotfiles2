@@ -1,0 +1,18 @@
+[38;5;246;03m# highlight[39;00m
+[38;5;246;03m# Outputs syntax-highlighted source code to a variety of formats.[39;00m
+[38;5;246;03m# More information: <http://www.andre-simon.de/doku/highlight/highlight.php>.[39;00m
+
+[38;5;246;03m# Produce a complete HTML document from a source code file:[39;00m
+[38;5;252mhighlight[39m[38;5;252m [39m[38;5;252m--out-format[39m[38;5;252m=[39m[38;5;252mhtml[39m[38;5;252m [39m[38;5;252m--style[39m[38;5;252m [39m[38;5;252mtheme_name[39m[38;5;252m [39m[38;5;252m--syntax[39m[38;5;252m [39m[38;5;252mlanguage[39m[38;5;252m [39m[38;5;252mpath/to/source_code[39m
+
+[38;5;246;03m# Produce an HTML fragment, suitable for inclusion in a larger document:[39;00m
+[38;5;252mhighlight[39m[38;5;252m [39m[38;5;252m--out-format[39m[38;5;252m=[39m[38;5;252mhtml[39m[38;5;252m [39m[38;5;252m--fragment[39m[38;5;252m [39m[38;5;252m--syntax[39m[38;5;252m [39m[38;5;252mlanguage[39m[38;5;252m [39m[38;5;252msource_file[39m
+
+[38;5;246;03m# Inline the CSS styling in every tag:[39;00m
+[38;5;252mhighlight[39m[38;5;252m [39m[38;5;252m--out-format[39m[38;5;252m=[39m[38;5;252mhtml[39m[38;5;252m [39m[38;5;252m--inline-css[39m[38;5;252m [39m[38;5;252m--syntax[39m[38;5;252m [39m[38;5;252mlanguage[39m[38;5;252m [39m[38;5;252msource_file[39m
+
+[38;5;246;03m# List all supported languages, themes, or plugins:[39;00m
+[38;5;252mhighlight[39m[38;5;252m [39m[38;5;252m--list-scripts[39m[38;5;252m [39m[38;5;252mlangs[39m[38;5;252m|[39m[38;5;252mthemes[39m[38;5;252m|[39m[38;5;252mplugins[39m
+
+[38;5;246;03m# Print a CSS stylesheet for a theme:[39;00m
+[38;5;252mhighlight[39m[38;5;252m [39m[38;5;252m--out-format[39m[38;5;252m=[39m[38;5;252mhtml[39m[38;5;252m [39m[38;5;252m--print-style[39m[38;5;252m [39m[38;5;252m--style[39m[38;5;252m [39m[38;5;252mtheme_name[39m[38;5;252m [39m[38;5;252m--syntax[39m[38;5;252m [39m[38;5;252mlanguage[39m[38;5;252m][39m[38;5;252m [39m[38;5;252m--stdout[39m

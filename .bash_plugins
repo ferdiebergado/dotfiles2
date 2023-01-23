@@ -1,0 +1,23 @@
+# vim:ft=sh
+
+load_plugin() {
+    if [[ $PS1 && -f $1 ]]; then
+        . "$1"
+    fi
+}
+
+# Use bash-completion, if available
+load_plugin /usr/share/bash-completion/bash_completion
+
+# use command not found, if available
+load_plugin /usr/share/doc/pkgfile/command-not-found.bash
+
+# fzf tab completion
+load_plugin /usr/share/fzf-tab-completion/bash/fzf-bash-completion.sh
+
+if [[ -n $(type fzf_bash_completion) ]]; then
+    bind -x '"\t": fzf_bash_completion'
+fi
+
+# git prompt
+load_plugin /usr/share/git/git-prompt.sh

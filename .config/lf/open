@@ -1,0 +1,83 @@
+#!/bin/sh
+redirect() {
+	exec </dev/null 1>&0 2>&0
+}
+
+fork() {
+	exec setsid -f -- "$@"
+}
+
+spawn() {
+	redirect
+	fork "$@"
+}
+
+opent() {
+	lf -remote "send $id !$1 $2"
+	exit 0
+}
+
+case "$1" in
+*.7z | *.a | *.ace | *.alz | *.arc | *.arj | *.bz | *.bz2 | *.cab | *.cpio | *.deb | *.gz | *.jar | \
+	*.lha | *.lrz | *.lz | *.lzh | *.lzma | *.lzo | *.rar | *.rpm | *.rz | *.t7z | *.tar | *.tbz | \
+	*.tbz2 | *.tgz | *.tlz | *.txz | *.tZ | *.tzo | *.war | *.xz | *.Z | *.zip)
+	xarchiver "$1" && exit 0
+	;;
+*.[1-8])
+	man "$1" && exit 0
+	;;
+*.pdf | *.ps | *.eps | *.djvu | *.djv | *.epub | *.cb[zr7t])
+	zathura "$1" && exit 0
+	;;
+*.od[cbdfgipstm] | *.odft | *.ot[cgipsth])
+	spawn libreoffice "$1"
+	;;
+*.do[ct] | *.do[ct]x)
+	spawn env WINEPREFIX="/home/d0np0br3/.PlayOnLinux/wineprefix/Office2010" wine start /ProgIDOpen Word.Document.12 "$1"
+	;;
+*.xl[st] | *.xl[st]x)
+	spawn env WINEPREFIX="/home/d0np0br3/.PlayOnLinux/wineprefix/Office2010" wine start /ProgIDOpen Excel.Sheet.12 "$1"
+	;;
+*.p[po]t | *.p[po]tx)
+	spawn env WINEPREFIX="/home/d0np0br3/.PlayOnLinux/wineprefix/Office2010" wine start /ProgIDOpen PowerPoint.Show.12 "$1"
+	;;
+# *.htm | *.html | *.xhtml)
+# 	first="true"
+# 	for file; do
+# 		if [ -n "$first" ]; then
+# 			first=""
+# 			set -- "file://$file"
+# 		else
+# 			set -- "$1" "file://$file"
+# 		fi
+# 	done
+# 	spawn $BROWSER -- "$1"
+# 	;;
+*.jpg | *.png | *.svg)
+	imv "$1" && exit 0
+	;;
+# *.mid | *.midi)
+# 	exec fluidsynth -a alsa -m alsa_seq -l -i /usr/share/soundfonts/FluidR3_GM.sf2 -- "$1"
+# 	;;
+# *.cue)
+# 	exec mpv --no-audio-display -- "$1"
+# 	;;
+*.json)
+	lf -remote "send $id \$$EDITOR \"$1\"" && exit 0
+	;;
+esac
+
+case $(file -Lb --mime-type "$1") in
+image/*)
+	imv "$1"
+	;;
+audio/* | */ogg)
+	lf -remote "send $id \$mpv \"$1\""
+	;;
+video/*)
+	mpv "$1"
+	;;
+*)
+	xdg-open "$1"
+	;;
+esac

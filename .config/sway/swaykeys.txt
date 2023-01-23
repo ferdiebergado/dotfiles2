@@ -1,0 +1,34 @@
+mod+:
+a - focus parent
+b - splith
+c - code
+d - launcher
+e - layout toggle split (with Shift - swaynag)
+f - fullscreen
+g - google chrome
+h - move left (Shift move focused)
+i - archmenu
+j - move down (Shift move focused)
+k - move up (Shift move focused)
+l - move right (Shift move focused)
+m - cmus
+n - nvim
+o - lf (Shift-pcmanfm)
+p - clipboard (with Shift - reload statusbar)
+q - (with Shift - close window)
+r - resize
+s - layout stacking
+t
+u - emojis
+v - splitv
+w - layout tabbed (with Shift - swayfocus.sh)
+x - sysmon
+y
+z - qutebrowser
+
+- - scratchpad show
+
+Return - terminal
+Escape - locker
+Print - screenshot
+Delete - wayout.sh

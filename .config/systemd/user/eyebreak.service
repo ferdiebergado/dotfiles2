@@ -1,0 +1,8 @@
+[Unit]
+Description=Eye Break Reminder Daemon
+
+[Service]
+ExecStart=/usr/bin/notify-send -u critical -t 20000 -i /home/d0np0br3/Pictures/icons/time-machine64.png "20-second Break"  "\nLook at something 20 feet away."
+
+[Install]
+WantedBy=default.target

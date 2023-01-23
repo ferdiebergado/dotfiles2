@@ -1,0 +1,15 @@
+#!/bin/sh
+
+pathtoname() {
+    udevadm info -p /sys/"$1" | awk -v FS== '/DEVNAME/ {print $2}'
+}
+
+echo "Automount: Monitoring block devices..."
+
+stdbuf -oL -- udevadm monitor --udev -s block | while read -r -- _ _ event devpath _; do
+        if [ "$event" = add ]; then
+            devname=$(pathtoname "$devpath")
+            devlabel=$(udevadm info "$devname" | awk -v FS== '/ID_FS_LABEL_ENC/ {print $2}')
+            udisksctl mount --block-device "$devname" --no-user-interaction && [[ ! $XDG_SESSION_TYPE = "tty" ]] && notify-send -i $HOME/Pictures/black_drive_usb.png "$devlabel mounted."
+        fi
+done

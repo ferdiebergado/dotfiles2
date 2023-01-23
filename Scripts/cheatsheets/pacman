@@ -1,0 +1,91 @@
+[48;5;8m[24m cheat:pacman [24m[0m
+[38;5;252m---[39m
+[38;5;252mtags:[39m[38;5;252m [39m[38;5;252m[[39m[38;5;252m [39m[38;5;252mpackaging[39m[38;5;252m [39m[38;5;252m][39m
+[38;5;252m---[39m
+[38;5;246;03m# To search for a package:[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Ss[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mpackage>...[39m
+
+[38;5;246;03m# To update the local package base and upgrade all out-of-date packages:[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Suy[39m
+
+[38;5;246;03m# To install a package:[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-S[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mpackage>...[39m
+
+[38;5;246;03m# To uninstall a package:[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-R[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mpackage>...[39m
+
+[38;5;246;03m# To uninstall a package and its depedencies, removing all new orphans:[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Rcs[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mpackage>...[39m
+
+[38;5;246;03m# To get information about package:[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Si[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mpackage>...[39m
+
+[38;5;246;03m# To install a package from builded package file (.tar.xz):[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-U[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mfile>[39m
+
+[38;5;246;03m# To list the commands provided by an installed package:[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Ql[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mpackage>...[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252msed[39m[38;5;252m [39m[38;5;252m-n[39m[38;5;252m [39m[38;5;252m-e[39m[38;5;252m [39m[38;5;214m's/.*\/bin\///p'[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtail[39m[38;5;252m [39m[38;5;252m-n[39m[38;5;252m [39m[38;5;252m+2[39m
+
+[38;5;246;03m# To list explicitly installed packages:[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Qe[39m
+
+[38;5;246;03m# To list the top-most recent explicitly installed packages (not in the base groups):[39;00m
+[38;5;252mexpac[39m[38;5;252m [39m[38;5;252m--timefmt[39m[38;5;252m=[39m[38;5;214m'%Y-%m-%d %T'[39m[38;5;252m [39m[38;5;214m'%l\t%n'[39m[38;5;252m [39m[38;5;70;01m$([39;00m[38;5;252mcomm[39m[38;5;252m [39m[38;5;252m-23[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252m([39m[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Qeq[39m[38;5;252m|[39m[38;5;252msort[39m[38;5;70;01m)[39;00m[38;5;252m [39m[38;5;252m<[39m[38;5;252m([39m[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Qqg[39m[38;5;252m [39m[38;5;252mbase[39m[38;5;252m [39m[38;5;252mbase-devel[39m[38;5;252m|[39m[38;5;252msort[39m[38;5;252m)[39m[38;5;252m)[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252msort[39m[38;5;252m [39m[38;5;252m-r[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mhead[39m[38;5;252m [39m[38;5;252m-20[39m
+
+[38;5;246;03m# To list orphan packages (installed as dependencies and not required anymore):[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Qdt[39m
+
+[38;5;246;03m# To list installed packages sorted by size[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Qi[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mawk[39m[38;5;252m [39m[38;5;214m'/^Name/ {name=$3} /^Installed Size/ {print name, $4 substr($5,1,1)}'[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mcolumn[39m[38;5;252m [39m[38;5;252m-t[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252msort[39m[38;5;252m [39m[38;5;252m-rhk2[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mcat[39m[38;5;252m [39m[38;5;252m-n[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtac[39m
+
+[38;5;246;03m# You can't directly install packages from the Arch User Database (AUR) with[39;00m
+[38;5;246;03m# pacman. You need an AUR helper program such as `yay` or `paru` to do that.[39;00m
+[38;5;246;03m# But considering that all of those are themselves in the AUR, here is how to[39;00m
+[38;5;246;03m# do that manualy.[39;00m
+[38;5;246;03m#[39;00m
+[38;5;246;03m# Installing a package from AUR is a relatively simple process:[39;00m
+[38;5;246;03m# - Make sure that you have the `base-devel` and `git` packages installed[39;00m
+[38;5;246;03m# - Retrieve the repository corresponding to the package from the AUR website[39;00m
+[38;5;246;03m# - Run `makepkg` in the cloned repository[39;00m
+[38;5;246;03m# - Use `pacman` to install the created package[39;00m
+[38;5;246;03m#[39;00m
+[38;5;246;03m# Ensure that have `base-devel` and `git`:[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-S[39m[38;5;252m [39m[38;5;252m--needed[39m[38;5;252m [39m[38;5;252mbase-devel[39m[38;5;252m [39m[38;5;252mgit[39m
+[38;5;246;03m# Retrieve the repository:[39;00m
+[38;5;252mgit[39m[38;5;252m [39m[38;5;252mclone[39m[38;5;252m [39m[38;5;252mhttps://aur.archlinux.org/[39m[38;5;252m<[39m[38;5;252mpackage>.git[39m
+[38;5;31mcd[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mpackage>[39m
+[38;5;246;03m# Build the package:[39;00m
+[38;5;252mmakepkg[39m[38;5;252m [39m[38;5;252m-s[39m
+[38;5;246;03m# Install:[39;00m
+[38;5;252msudo[39m[38;5;252m [39m[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-U[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mpackage[39m[38;5;252m [39m[38;5;252m([39m[38;5;252m.pkg.tar.zst[39m[38;5;252m)[39m[38;5;252m>[39m
+
+[48;5;8m[24m tldr:pacman [24m[0m
+[38;5;246;03m# pacman[39;00m
+[38;5;246;03m# Arch Linux package manager utility.[39;00m
+[38;5;246;03m# Some subcommands such as `pacman sync` have their own usage documentation.[39;00m
+[38;5;246;03m# For equivalent commands in other package managers, see <https://wiki.archlinux.org/title/Pacman/Rosetta>.[39;00m
+[38;5;246;03m# More information: <https://man.archlinux.org/man/pacman.8>.[39;00m
+
+[38;5;246;03m# Synchronize and update all packages:[39;00m
+[38;5;252msudo[39m[38;5;252m [39m[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Syu[39m
+
+[38;5;246;03m# Install a new package:[39;00m
+[38;5;252msudo[39m[38;5;252m [39m[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-S[39m[38;5;252m [39m[38;5;252mpackage_name[39m
+
+[38;5;246;03m# Remove a package and its dependencies:[39;00m
+[38;5;252msudo[39m[38;5;252m [39m[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Rs[39m[38;5;252m [39m[38;5;252mpackage_name[39m
+
+[38;5;246;03m# Search the package database for a regular expression or keyword:[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Ss[39m[38;5;252m [39m[38;5;214m"search_pattern"[39m
+
+[38;5;246;03m# List installed packages and versions:[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Q[39m
+
+[38;5;246;03m# List only the explicitly installed packages and versions:[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Qe[39m
+
+[38;5;246;03m# List orphan packages (installed as dependencies but not actually required by any package):[39;00m
+[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Qtdq[39m
+
+[38;5;246;03m# Empty the entire pacman cache:[39;00m
+[38;5;252msudo[39m[38;5;252m [39m[38;5;252mpacman[39m[38;5;252m [39m[38;5;252m-Scc[39m

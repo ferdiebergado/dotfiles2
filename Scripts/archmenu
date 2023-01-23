@@ -1,0 +1,407 @@
+#!/bin/bash
+# vim:ft=sh
+#
+#########################################################
+#                                                       #
+# ARCHMENU                                              #
+# Arch Linux Package Management Menu                    #
+#                                                       #
+# Author:   Ferdinand Saporas Bergado                   #
+# License:  MIT                                         #
+#                                                       #
+#########################################################
+
+# DEPENDENCIES
+DEPS=(fzf pacman expac yay pactree reflector)
+
+# check if dependencies are installed
+MISSING=0
+
+for dep in "${DEPS[@]}"; do
+    if [[ -z $(command -v $dep) ]]; then
+        echo -e "\n${RED}$dep is not installed.${NC}"
+        MISSING=1
+    fi
+done
+
+if [[ $MISSING -eq 1 ]]; then
+    exit 1
+fi
+
+# COLORS
+RED='\033[0;31m'
+CYAN='\033[1;36m'
+ORANGE='\033[0;33m'
+PURPLE='\033[0;35m'
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+LIGHTGRAY='\033[0;37m'
+NC='\033[0m' # No Color
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+# VARS
+APP_NAME="archmenu"
+APP_DIR="/tmp/$APP_NAME"
+APP_CACHE="$APP_DIR/$APP_NAME"
+INSTALLED_CACHE="$APP_DIR/installed.list"
+ORPHANED_CACHE="$APP_DIR/orphaned.list"
+NATIVE_CACHE="$APP_DIR/native.list"
+AUR_CACHE="$APP_DIR/aur.list"
+EXPLICIT_CACHE="$APP_DIR/explicit.list"
+ALLAUR_CACHE="$APP_DIR/allaur.list"
+ALL_CACHE="$APP_DIR/all.list"
+AURINFO_CACHE="$APP_DIR/aurinfo.list"
+APPEND_CMD="grep -E 'Name|Description' | sed -e :a -e '\$!N;s/\nDescription/ /;ta' -e 'P;D' | awk -F ':' '{print \$2,\$3}' | sed 's/        / - /g' | sed 's/^ //g'"
+FZF_CMD="fzf --info inline --prompt 'Select a package > ' +m -e +s --reverse --preview-window right:60%:wrap --height 100%"
+YAY_PREVIEW_CMD="--preview 'yay -Qi {1}'"
+FZF_PREVIEW_CMD="$FZF_CMD $YAY_PREVIEW_CMD"
+TOTAL_APPS=0
+TOTAL_NATIVE=0
+TOTAL_AUR=0
+TOTAL_ORPHANED=0
+
+COLUMN_WIDTH=-50
+
+# horizontal border character
+#BH='\x1b(0\x71\x1b(B'
+BH="\u2500"
+#BV='\x1b(0\x78\x1b(B'
+#BTL='\x1b(0\x6c\x1b(B'
+#BTR='\x1b(0\x6b\x1b(B'
+#BBR='\x1b(0\x6a\x1b(B'
+#BBL='\x1b(0\x6d\x1b(B'
+
+# FUNCTIONS
+
+get_total_packages() {
+    TOTAL_APPS="$(($TOTAL_NATIVE + $TOTAL_AUR))"
+}
+
+createdir() {
+    if [[ ! -d $APP_DIR ]]; then
+        mkdir $APP_DIR
+    fi
+}
+
+build_app_cache() {
+    echo -n "Loading list of packages... "
+    #[[ ! -f $APP_CACHE ]] && yay -Slq | sort > $APP_CACHE
+
+    if [ ! -f $APP_CACHE ]; then
+        pacman -Si | eval "$APPEND_CMD" >$APP_CACHE
+        yay -Sl --aur | cut -d' ' -f2 >>$APP_CACHE
+        cat $APP_CACHE | sort >$ALL_CACHE
+    fi
+
+    echo "done."
+}
+
+build_installed_cache() {
+    yay -Q | sort >$INSTALLED_CACHE
+}
+
+build_orphaned_cache() {
+    echo -n "Loading orphaned packages... "
+
+    if [[ ! -f $ORPHANED_CACHE ]]; then
+        yay -Qdt | sort >$ORPHANED_CACHE
+    fi
+
+    TOTAL_ORPHANED="$(cat $ORPHANED_CACHE | wc -l)"
+
+    echo "done."
+}
+
+build_native_cache() {
+    echo -n "Loading installed native packages... "
+
+    if [[ ! -f $NATIVE_CACHE ]]; then
+        yay -Qn | sort >$NATIVE_CACHE
+    fi
+
+    TOTAL_NATIVE="$(cat $NATIVE_CACHE | wc -l)"
+
+    get_total_packages
+
+    echo "done."
+}
+
+build_aur_cache() {
+    echo -n "Loading installed aur packages... "
+
+    if [[ ! -f $AUR_CACHE ]]; then
+        yay -Qm | sort >$AUR_CACHE
+    fi
+
+    TOTAL_AUR="$(cat $AUR_CACHE | wc -l)"
+
+    get_total_packages
+
+    echo "done."
+}
+
+build_explicit_cache() {
+    echo -n "Loading explicitly installed packages... "
+
+    if [[ ! -f $EXPLICIT_CACHE ]]; then
+        yay -Qe | sort >$EXPLICIT_CACHE
+    fi
+
+    echo "done."
+}
+
+wait_input() {
+    echo -e "\n${BLUE}Press any key to continue...${NC}\n"
+    read
+}
+
+update_mirrors() {
+    local last_sync="$(date -r /etc/pacman.d/mirrorlist '+%D')"
+    local curr_date="$(date '+%D')"
+
+    if [[ $(date -d $last_sync '+%s') -lt $(date -d $curr_date '+%s') ]]; then
+        echo -e "${YELLOW}Updating mirrorlists...${NC}\n" &
+        sh -c "sudo reflector --protocol https --latest 5 --age 24 --sort rate --save /etc/pacman.d/mirrorlist"
+        echo -e "\n${GREEN}Mirrors updated.${NC}\n"
+    else
+        echo -e "\n${GREEN}Mirrors are up to date.${NC}\n"
+    fi
+}
+
+show_error() {
+    if [[ -n $APP_ERROR ]]; then
+        echo -e "${RED}$APP_ERROR${NC}\n"
+        APP_ERROR=''
+    fi
+
+}
+
+print_border() {
+
+    for i in {1..100}; do
+        echo -en "$BH"
+    done
+
+    echo -e "\n"
+}
+
+show_menu() {
+    clear
+
+    echo -e "\n${CYAN}${bold}Arch Linux Package Management Menu${normal}${NC}\n"
+
+    if [[ ! $TOTAL_APPS -eq 0 ]]; then
+        echo -e "Installed Packages: ${bold}$(($TOTAL_NATIVE + $TOTAL_AUR))${normal}\t\tNative: ${bold}$TOTAL_NATIVE${normal}\t\tAUR: ${bold}$TOTAL_AUR${normal}\t\tOrphaned: ${bold}$TOTAL_ORPHANED${normal}\n"
+    fi
+
+    print_border
+
+    echo -e "${bold}TASKS${normal}\n"
+
+
+    local task_left=(
+        '1 - Update mirrorlist'
+        '2 - Update installed packages'
+        '3 - Install a package'
+        '4 - Remove a package'
+        '5 - Remove a package (w/ dependencies)'
+        '6 - List orphaned packages'
+        '7 - List installed from official repositories'
+        '8 - List installed from AUR'
+        '9 - List explicitly installed packages'
+    )
+
+    local task_right=(
+        '10 - Clear package cache'
+        '11 - List last installed packages'
+        '12 - Reverse dependency tree'
+        '13 - Delete db lock file'
+        '14 - Install from AUR'
+        '15 - List package sizes with dependencies'
+        '16 - List changed backup files'
+        '17 - Show statistics'
+        ' 0 - Quit'
+    )
+
+    for ((i = 0; i < 9; i++)); do
+        printf '%*s\t%*s\n' $COLUMN_WIDTH "${task_left[$i]}" $COLUMN_WIDTH "${task_right[$i]}"
+    done
+
+    echo -e "\n"
+
+    print_border
+    show_error
+}
+
+clear_cache() {
+    rm -f "$APP_DIR/*"
+}
+
+clear_installed_cache() {
+    rm -f "$APP_DIR/*.list"
+}
+
+update() {
+    if [[ $uptodate -eq 1 ]]; then
+        yay -Syu
+        uptodate=0
+    fi
+
+}
+# MAIN
+
+# handle errors
+set -o errtrace
+trap show_menu ERR
+
+check_deps
+createdir
+echo -e "\n${YELLOW}Getting package information...${NC}\n"
+build_native_cache
+build_aur_cache
+build_orphaned_cache
+show_menu
+uptodate=1
+
+while read -p "Select a task [1-17, 0 to quit]: " task; do
+
+    case $task in
+
+            # Update mirrorlist
+        1)
+            update_mirrors
+            wait_input
+            ;;
+
+            # Update installed packages
+        2)
+            update_mirrors
+
+            if [[ $? -eq 0 ]]; then
+                rm -f $APP_CACHE
+            fi
+
+            update
+            wait_input
+
+            ;;
+
+            # Install a package
+        3)
+            update_mirrors
+            update
+            build_app_cache
+
+            eval "cat $ALL_CACHE | $FZF_CMD --preview 'yay -Si {1}' --header 'INSTALL A PACKAGE' --multi | cut -d ' ' -f 1 | xargs -or yay -S"
+
+            if [[ $? -eq 0 ]]; then
+                clear_installed_cache
+            fi
+
+            wait_input
+            ;;
+            # Remove a package
+        4)
+            build_installed_cache
+            eval "cat $INSTALLED_CACHE | $FZF_PREVIEW_CMD --header 'REMOVE A PACKAGE' --multi | cut -d ' ' -f 1 | xargs -or yay -Rn"
+            if [[ $? -eq 0 ]]; then
+                clear_installed_cache
+            fi
+            wait_input
+            ;;
+            # Remove a package and its dependencies
+        5)
+            build_installed_cache
+
+            eval "cat $INSTALLED_CACHE | $FZF_PREVIEW_CMD --header 'REMOVE A PACKAGE WITH ITS DEPENDENCIES' --multi | cut -d ' ' -f 1 | xargs -or yay -Rns"
+
+            if [[ $? -eq 0 ]]; then
+                clear_installed_cache
+            fi
+
+            wait_input
+            ;;
+            # List orphaned packages
+        6)
+            build_orphaned_cache
+            eval "cat $ORPHANED_CACHE | $FZF_PREVIEW_CMD --header 'ORPHANED PACKAGE(S)'"
+            ;;
+            # List native installed packages
+        7)
+            build_native_cache
+            eval "cat $NATIVE_CACHE | $FZF_PREVIEW_CMD --header 'INSTALLED NATIVE PACKAGES'"
+            ;;
+            # List packages installed from AUR
+        8)
+            build_aur_cache
+            eval "cat $AUR_CACHE | $FZF_PREVIEW_CMD --header 'INSTALLED AUR PACKAGES'"
+            ;;
+            # List explicitly installed packages
+        9)
+            build_explicit_cache
+            eval "cat $EXPLICIT_CACHE | $FZF_PREVIEW_CMD --header 'EXPLICITLY INSTALLED PACKAGES'"
+            ;;
+            # Clear package cache
+        10)
+            # sudo rm -fv /var/cache/pacman/pkg/*
+            sudo paccache -rk 1
+            wait_input
+            ;;
+            # List last installed packages
+        11)
+            eval "expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort | tail -n 20 | cut -f2 | $FZF_PREVIEW_CMD --header 'RECENTLY INSTALLED PACKAGES'"
+            ;;
+            # Show reverse dependency tree for a package
+        12)
+            build_installed_cache
+            echo -e "\n"
+            eval "cat $INSTALLED_CACHE | $FZF_PREVIEW_CMD --header 'REVERSE DEPENDENCY TREE' | cut -d' ' -f1 | xargs -r pactree -cr"
+            wait_input
+            ;;
+            # Delete db lock file
+        13)
+            if [[ -z $(pgrep -x pacman) ]]; then
+                sudo rm -iv /var/lib/pacman/db.lck
+            fi
+
+            if [[ $? -eq 0 ]]; then
+                echo -e "\n${GREEN}Lock file deleted.${NC}\n"
+            fi
+
+            wait_input
+            ;;
+            # Install from AUR
+        14)
+            echo -e "\nEnter search term: "
+            read p
+            yay "$p"
+            wait_input
+            ;;
+            # List package sizes with dependencies
+        15)
+            expac -H M '%m\t%n' | sort -hr | fzf --prompt 'Installed package sizes with dependencies: '
+            ;;
+            # List changed backup files
+        16)
+            pacman -Qii | awk '/^MODIFIED/ {print $2}' | fzf --prompt 'List changed backup files: '
+            ;;
+            # Show statistics
+        17)
+            yay -Ps
+            wait_input
+            ;;
+        0)
+            exit 0
+            ;;
+        menu)
+            show_menu
+            ;;
+        *)
+            APP_ERROR='Invalid input'
+            ;;
+    esac
+
+    show_menu
+done

@@ -1,0 +1,12 @@
+[38;5;246;03m# fc-cache[39;00m
+[38;5;246;03m# Scan font directories to build font cache files.[39;00m
+[38;5;246;03m# More information: <https://manned.org/fc-cache>.[39;00m
+
+[38;5;246;03m# Generate font cache files:[39;00m
+[38;5;252mfc-cache[39m
+
+[38;5;246;03m# Force a rebuild of all font cache files, without checking if cache is up-to-date:[39;00m
+[38;5;252mfc-cache[39m[38;5;252m [39m[38;5;252m-f[39m
+
+[38;5;246;03m# Erase font cache files, then generate new font cache files:[39;00m
+[38;5;252mfc-cache[39m[38;5;252m [39m[38;5;252m-r[39m

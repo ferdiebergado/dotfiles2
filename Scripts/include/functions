@@ -1,0 +1,22 @@
+red_bg=$'\033[31m'
+normal=$'\033[0m'
+
+info() {
+	echo "INFO: $1"
+}
+
+error() {
+	echo -e "${red_bg}ERR:${normal} $1" >&2
+}
+
+halt() {
+	error "$1"
+	exit 1
+}
+
+get_filename() {
+	local filename=$(basename "$1")
+	filename=${filename%.*}
+
+	echo $filename
+}

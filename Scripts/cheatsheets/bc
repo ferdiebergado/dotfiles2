@@ -1,0 +1,22 @@
+[38;5;246;03m# bc[39;00m
+[38;5;246;03m# An arbitrary precision calculator language.[39;00m
+[38;5;246;03m# See also: `dc`.[39;00m
+[38;5;246;03m# More information: <https://manned.org/man/bc.1>.[39;00m
+
+[38;5;246;03m# Start an interactive session:[39;00m
+[38;5;252mbc[39m
+
+[38;5;246;03m# Start an interactive session with the standard math library enabled:[39;00m
+[38;5;252mbc[39m[38;5;252m [39m[38;5;252m--mathlib[39m
+
+[38;5;246;03m# Calculate an expression:[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m'5 / 3'[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mbc[39m
+
+[38;5;246;03m# Execute a script:[39;00m
+[38;5;252mbc[39m[38;5;252m [39m[38;5;252mpath/to/script.bc[39m
+
+[38;5;246;03m# Calculate an expression with the specified scale:[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m'scale = 10; 5 / 3'[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mbc[39m
+
+[38;5;246;03m# Calculate a sine/cosine/arctangent/natural logarithm/exponential function using `mathlib`:[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m's|c|a|l|e(1)'[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mbc[39m[38;5;252m [39m[38;5;252m--mathlib[39m

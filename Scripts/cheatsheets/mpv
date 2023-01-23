@@ -1,0 +1,27 @@
+[38;5;246;03m# mpv[39;00m
+[38;5;246;03m# A audio/video player based on MPlayer.[39;00m
+[38;5;246;03m# More information: <https://mpv.io>.[39;00m
+
+[38;5;246;03m# Play a video or audio file:[39;00m
+[38;5;252mmpv[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Play a video or audio file from a URL:[39;00m
+[38;5;252mmpv[39m[38;5;252m [39m[38;5;214m'https://www.youtube.com/watch?v=dQw4w9WgXcQ'[39m
+
+[38;5;246;03m# Jump backward/forward 5 seconds:[39;00m
+[38;5;252mLEFT[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mor>[39m[38;5;252m [39m[38;5;252mRIGHT[39m
+
+[38;5;246;03m# Jump backward/forward 1 minute:[39;00m
+[38;5;252mDOWN[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mor>[39m[38;5;252m [39m[38;5;252mUP[39m
+
+[38;5;246;03m# Decrease or increase playback speed by 10%:[39;00m
+[38;5;252m[[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mor>[39m[38;5;252m [39m[38;5;252m][39m
+
+[38;5;246;03m# Play a file at a specified speed (0.01 to 100, default 1):[39;00m
+[38;5;252mmpv[39m[38;5;252m [39m[38;5;252m--speed[39m[38;5;252m [39m[38;5;252mspeed[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Play a file using a profile defined in the `mpv.conf` file:[39;00m
+[38;5;252mmpv[39m[38;5;252m [39m[38;5;252m--profile[39m[38;5;252m [39m[38;5;252mprofile_name[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Display the output of webcam or other video input device:[39;00m
+[38;5;252mmpv[39m[38;5;252m [39m[38;5;252m/dev/video0[39m

@@ -1,0 +1,45 @@
+[48;5;8m[24m cheat.sheets:tee [24m[0m
+[38;5;246;03m# Display `ls` output to the user, but also write it to the given file.[39;00m
+[38;5;252mls[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtee[39m[38;5;252m [39m[38;5;252moutfile.txt[39m
+
+[38;5;246;03m# As above, but append the data; previous file's data remains intact while[39;00m
+[38;5;246;03m# new data is added at the end of the file.[39;00m
+[38;5;252mls[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtee[39m[38;5;252m [39m[38;5;252m-a[39m[38;5;252m [39m[38;5;252moutfile.txt[39m
+
+[38;5;246;03m# Pipe the standard output of a given command into `tee`, which then displays[39;00m
+[38;5;246;03m# it to the user and sending the data to files `one`, `two`, and `three`.[39;00m
+[38;5;252m[[39m[38;5;252mCOMMAND[39m[38;5;252m][39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtee[39m[38;5;252m [39m[38;5;252mone[39m[38;5;252m [39m[38;5;252mtwo[39m[38;5;252m [39m[38;5;252mthree[39m
+
+[38;5;246;03m# Workaround to output data to a file, with root privileges.[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;67m3[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252msudo[39m[38;5;252m [39m[38;5;252mtee[39m[38;5;252m [39m[38;5;252m/proc/sys/vm/drop_caches[39m
+
+[38;5;246;03m# Pipe the current Vim buffer to a shell process, which in this case is `tee`.[39;00m
+[38;5;246;03m# This is especially useful as a shortcut added to `.vimrc` or similar.[39;00m
+[38;5;252m:w[39m[38;5;252m [39m[38;5;252m!sudo[39m[38;5;252m [39m[38;5;252mtee[39m[38;5;252m [39m[38;5;252m%[39m
+
+[48;5;8m[24m cheat:tee [24m[0m
+[38;5;246;03m# To tee stdout to <outfile>:[39;00m
+[38;5;252mls[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtee[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252moutfile>[39m
+
+[38;5;246;03m# To tee stdout and append to <outfile>:[39;00m
+[38;5;252mls[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtee[39m[38;5;252m [39m[38;5;252m-a[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252moutfile>[39m
+
+[38;5;246;03m# To tee stdout to the terminal, and also pipe it into another program for further processing:[39;00m
+[38;5;252mls[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtee[39m[38;5;252m [39m[38;5;252m/dev/tty[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mxargs[39m[38;5;252m [39m[38;5;31mprintf[39m[38;5;252m [39m[38;5;214m"\033[1;34m%s\033[m\n"[39m
+
+[48;5;8m[24m tldr:tee [24m[0m
+[38;5;246;03m# tee[39;00m
+[38;5;246;03m# Read from standard input and write to standard output and files (or commands).[39;00m
+[38;5;246;03m# More information: <https://www.gnu.org/software/coreutils/tee>.[39;00m
+
+[38;5;246;03m# Copy standard input to each file, and also to standard output:[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"example"[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtee[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Append to the given files, do not overwrite:[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"example"[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtee[39m[38;5;252m [39m[38;5;252m-a[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Print standard input to the terminal, and also pipe it into another program for further processing:[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"example"[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtee[39m[38;5;252m [39m[38;5;252m/dev/tty[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mxargs[39m[38;5;252m [39m[38;5;31mprintf[39m[38;5;252m [39m[38;5;214m"[%s]"[39m
+
+[38;5;246;03m# Create a directory called "example", count the number of characters in "example" and write "example" to the terminal:[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"example"[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtee[39m[38;5;252m [39m[38;5;252m>[39m[38;5;252m([39m[38;5;252mxargs[39m[38;5;252m [39m[38;5;252mmkdir[39m[38;5;252m)[39m[38;5;252m [39m[38;5;252m>[39m[38;5;252m([39m[38;5;252mwc[39m[38;5;252m [39m[38;5;252m-c[39m[38;5;252m)[39m

@@ -1,0 +1,18 @@
+[38;5;246;03m# To display process startup time:[39;00m
+[38;5;252msystemd-analyze[39m
+
+[38;5;246;03m# To display process startup time at service level:[39;00m
+[38;5;252msystemd-analyze[39m[38;5;252m [39m[38;5;252mblame[39m
+
+[38;5;246;03m# To list running units:[39;00m
+[38;5;252msystemctl[39m[38;5;252m [39m[38;5;252mlist-units[39m
+
+[38;5;246;03m# To load a unit at startup:[39;00m
+[38;5;252msystemctl[39m[38;5;252m [39m[38;5;31menable[39m[38;5;252m [39m[38;5;252mfoo.service[39m
+
+[38;5;246;03m# To start or Stop a unit:[39;00m
+[38;5;252msystemctl[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mstart[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mstop>[39m[38;5;252m [39m[38;5;252mfoo.service[39m
+
+[38;5;246;03m# To unit file locations:[39;00m
+[38;5;252m/etc/systemd/system[39m
+[38;5;252m/usr/lib/systemd/system[39m

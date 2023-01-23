@@ -1,0 +1,35 @@
+[48;5;8m[24m cheat:xrandr [24m[0m
+[38;5;246;03m# To enable HDMI2 output with maximal resolution:[39;00m
+[38;5;252mxrandr[39m[38;5;252m [39m[38;5;252m--output[39m[38;5;252m [39m[38;5;252mHDMI2[39m[38;5;252m [39m[38;5;252m--auto[39m
+
+[38;5;246;03m# To enable HDMI2 output with specific resolution:[39;00m
+[38;5;252mxrandr[39m[38;5;252m [39m[38;5;252m--output[39m[38;5;252m [39m[38;5;252mHDMI2[39m[38;5;252m [39m[38;5;252m--mode[39m[38;5;252m [39m[38;5;252m1280x800[39m
+
+[38;5;246;03m# To enable HDMI2 output next to HDMI1 output:[39;00m
+[38;5;252mxrandr[39m[38;5;252m [39m[38;5;252m--output[39m[38;5;252m [39m[38;5;252mHDMI2[39m[38;5;252m [39m[38;5;252m--auto[39m[38;5;252m [39m[38;5;252m--right-of[39m[38;5;252m [39m[38;5;252mHDMI1[39m
+
+[38;5;246;03m# To disable HDMI2 output:[39;00m
+[38;5;252mxrandr[39m[38;5;252m [39m[38;5;252m--output[39m[38;5;252m [39m[38;5;252mHDMI2[39m[38;5;252m [39m[38;5;252m--off[39m
+
+[48;5;8m[24m tldr:xrandr [24m[0m
+[38;5;246;03m# xrandr[39;00m
+[38;5;246;03m# Set the size, orientation and/or reflection of the outputs for a screen.[39;00m
+[38;5;246;03m# More information: <https://www.x.org/releases/current/doc/man/man1/xrandr.1.xhtml>.[39;00m
+
+[38;5;246;03m# Display the current state of the system (known screens, resolutions, ...):[39;00m
+[38;5;252mxrandr[39m[38;5;252m [39m[38;5;252m--query[39m
+
+[38;5;246;03m# Disable disconnected outputs and enable connected ones with default settings:[39;00m
+[38;5;252mxrandr[39m[38;5;252m [39m[38;5;252m--auto[39m
+
+[38;5;246;03m# Change the resolution and update frequency of DisplayPort 1 to 1920x1080, 60Hz:[39;00m
+[38;5;252mxrandr[39m[38;5;252m [39m[38;5;252m--output[39m[38;5;252m [39m[38;5;252mDP1[39m[38;5;252m [39m[38;5;252m--mode[39m[38;5;252m [39m[38;5;252m1920x1080[39m[38;5;252m [39m[38;5;252m--rate[39m[38;5;252m [39m[38;5;67m60[39m
+
+[38;5;246;03m# Set the resolution of HDMI2 to 1280x1024 and put it on the right of DP1:[39;00m
+[38;5;252mxrandr[39m[38;5;252m [39m[38;5;252m--output[39m[38;5;252m [39m[38;5;252mHDMI2[39m[38;5;252m [39m[38;5;252m--mode[39m[38;5;252m [39m[38;5;252m1280x1024[39m[38;5;252m [39m[38;5;252m--right-of[39m[38;5;252m [39m[38;5;252mDP1[39m
+
+[38;5;246;03m# Disable the VGA1 output:[39;00m
+[38;5;252mxrandr[39m[38;5;252m [39m[38;5;252m--output[39m[38;5;252m [39m[38;5;252mVGA1[39m[38;5;252m [39m[38;5;252m--off[39m
+
+[38;5;246;03m# Set the brightness for LVDS1 to 50%:[39;00m
+[38;5;252mxrandr[39m[38;5;252m [39m[38;5;252m--output[39m[38;5;252m [39m[38;5;252mLVDS1[39m[38;5;252m [39m[38;5;252m--brightness[39m[38;5;252m [39m[38;5;67m0[39m[38;5;252m.5[39m

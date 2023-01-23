@@ -1,0 +1,80 @@
+[48;5;8m[24m cheat.sheets:sort [24m[0m
+[38;5;246;03m# sort[39;00m
+[38;5;246;03m# Sort lines of text files[39;00m
+
+[38;5;246;03m# Return the contents of the British English dictionary, in reverse order.[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m-r[39m[38;5;252m [39m[38;5;252m/usr/share/dict/british-english[39m
+
+[38;5;246;03m# The GNU sort(1) command can also filter out adjacent duplicate lines and can[39;00m
+[38;5;246;03m# therefore overlap with the uniq(1) command. However, uniq(1) has some options[39;00m
+[38;5;246;03m# that sort(1) cannot do so refer to the man page for you situation if you [39;00m
+[38;5;246;03m# require something beyond a basic uniqueness check. In addition, there is the[39;00m
+[38;5;246;03m# potential for parallizing the processing by piping sort(1) into uniq(1) for [39;00m
+[38;5;246;03m# non trivial tasks.[39;00m
+[38;5;246;03m#[39;00m
+[38;5;246;03m# By default, sort(1) sorts lines or fields using the ASCII table. Here, we're[39;00m
+[38;5;246;03m# essentially getting alphanumeric sorting, where case is handled separately; -[39;00m
+[38;5;246;03m# this results in these words being adjacent to one another, thus duplicates[39;00m
+[38;5;246;03m# are removed.[39;00m
+[38;5;246;03m#[39;00m
+[38;5;246;03m# If you need better uniq-ing, you could refer to AWK & its associative arrays.[39;00m
+[38;5;31mprintf[39m[38;5;252m [39m[38;5;214m'%s\n'[39m[38;5;252m [39m[38;5;252mthis[39m[38;5;252m [39m[38;5;252mis[39m[38;5;252m [39m[38;5;252ma[39m[38;5;252m [39m[38;5;252mlist[39m[38;5;252m [39m[38;5;252mof[39m[38;5;252m [39m[38;5;252mof[39m[38;5;252m [39m[38;5;252mrandom[39m[38;5;252m [39m[38;5;252mwords[39m[38;5;252m [39m[38;5;252mwith[39m[38;5;252m [39m[38;5;252mduplicate[39m[38;5;252m [39m[38;5;252mwords[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252msort[39m[38;5;252m [39m[38;5;252m-u[39m
+
+[38;5;246;03m# Sort numerically. If you don't provide the `-n` flag, sort(1) will instead[39;00m
+[38;5;246;03m# sort by the ASCII table, as mentioned above, meaning it'll display as 1, 10, -[39;00m
+[38;5;246;03m# 11, 2, 3, 4, etc.[39;00m
+[38;5;31mprintf[39m[38;5;252m [39m[38;5;214m'%d\n'[39m[38;5;252m [39m[38;5;252m{[39m[38;5;67m1[39m[38;5;252m..9[39m[38;5;252m}[39m[38;5;252m [39m[38;5;67m10[39m[38;5;252m [39m[38;5;67m11[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252msort[39m[38;5;252m [39m[38;5;252m-n[39m
+
+[38;5;246;03m# You can even sort human-readable sizes. In this example, the 2nd column is[39;00m
+[38;5;246;03m# being sorted, thanks to the use of the `-k` flag, and the sorting is[39;00m
+[38;5;246;03m# reversed, so that the top-most storage space hungry filesystems are displayed[39;00m
+[38;5;246;03m# from df(1).[39;00m
+[38;5;252mdf[39m[38;5;252m [39m[38;5;252m-ht[39m[38;5;252m [39m[38;5;252mext4[39m[38;5;252m [39m[38;5;252m/dev/sd[39m[38;5;252m[[39m[38;5;252ma-z[39m[38;5;252m][39m[38;5;252m[[39m[38;5;67m1[39m[38;5;252m-9[39m[38;5;252m][39m[38;5;252m*[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252msed[39m[38;5;252m [39m[38;5;214m'1d'[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252msort[39m[38;5;252m [39m[38;5;252m-rhk[39m[38;5;252m [39m[38;5;67m2[39m
+
+[48;5;8m[24m cheat:sort [24m[0m
+[38;5;246;03m# To sort a file:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mfile>[39m
+
+[38;5;246;03m# To sort a file by keeping only unique:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m-u[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mfile>[39m
+
+[38;5;246;03m# To sort a file and reverse the result:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m-r[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mfile>[39m
+
+[38;5;246;03m# To sort a file randomly:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m-R[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mfile>[39m
+
+[38;5;246;03m# To sort a file and store the output in another file:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252minputFile>[39m[38;5;252m [39m[38;5;252m-o[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252moutputFile>[39m
+
+[38;5;246;03m# Sort by default uses /var/tmp to store temp files but size of /var/tmp directory is limited. In order to sort huge use a directory with adequate size:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m-T[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mtempDirectory>[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mfile>[39m
+
+[48;5;8m[24m tldr:sort [24m[0m
+[38;5;246;03m# sort[39;00m
+[38;5;246;03m# Sort lines of text files.[39;00m
+[38;5;246;03m# More information: <https://www.gnu.org/software/coreutils/sort>.[39;00m
+
+[38;5;246;03m# Sort a file in ascending order:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Sort a file in descending order:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m--reverse[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Sort a file in case-insensitive way:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m--ignore-case[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Sort a file using numeric rather than alphabetic order:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m--numeric-sort[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Sort `/etc/passwd` by the 3rd field of each line numerically, using ":" as a field separator:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m--field-separator[39m[38;5;252m=[39m[38;5;252m:[39m[38;5;252m [39m[38;5;252m--key[39m[38;5;252m=[39m[38;5;252m3n[39m[38;5;252m [39m[38;5;252m/etc/passwd[39m
+
+[38;5;246;03m# Sort a file preserving only unique lines:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m--unique[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Sort a file, printing the output to the specified output file (can be used to sort a file in-place):[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m--output[39m[38;5;252m=[39m[38;5;252mpath/to/file[39m[38;5;252m [39m[38;5;252mpath/to/file[39m
+
+[38;5;246;03m# Sort numbers with exponents:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m--general-numeric-sort[39m[38;5;252m [39m[38;5;252mpath/to/file[39m

@@ -1,0 +1,40 @@
+[48;5;8m[24m cheat:uniq [24m[0m
+[38;5;246;03m# To show all lines without duplication:[39;00m
+[38;5;246;03m# (`sort -u` and `uniq` have the same effect.)[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mfile>[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252muniq[39m
+
+[38;5;246;03m# To show not duplicated lines:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mfile>[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252muniq[39m[38;5;252m [39m[38;5;252m-u[39m
+
+[38;5;246;03m# To show duplicated lines only:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mfile>[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252muniq[39m[38;5;252m [39m[38;5;252m-d[39m
+
+[38;5;246;03m# To count all lines:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mfile>[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252muniq[39m[38;5;252m [39m[38;5;252m-c[39m
+
+[38;5;246;03m# To count not duplicated lines:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mfile>[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252muniq[39m[38;5;252m [39m[38;5;252m-uc[39m
+
+[38;5;246;03m# To count only duplicated lines:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mfile>[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252muniq[39m[38;5;252m [39m[38;5;252m-dc[39m
+
+[48;5;8m[24m tldr:uniq [24m[0m
+[38;5;246;03m# uniq[39;00m
+[38;5;246;03m# Output the unique lines from the given input or file.[39;00m
+[38;5;246;03m# Since it does not detect repeated lines unless they are adjacent, we need to sort them first.[39;00m
+[38;5;246;03m# More information: <https://www.gnu.org/software/coreutils/uniq>.[39;00m
+
+[38;5;246;03m# Display each line once:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252mpath/to/file[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252muniq[39m
+
+[38;5;246;03m# Display only unique lines:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252mpath/to/file[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252muniq[39m[38;5;252m [39m[38;5;252m-u[39m
+
+[38;5;246;03m# Display only duplicate lines:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252mpath/to/file[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252muniq[39m[38;5;252m [39m[38;5;252m-d[39m
+
+[38;5;246;03m# Display number of occurrences of each line along with that line:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252mpath/to/file[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252muniq[39m[38;5;252m [39m[38;5;252m-c[39m
+
+[38;5;246;03m# Display number of occurrences of each line, sorted by the most frequent:[39;00m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252mpath/to/file[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252muniq[39m[38;5;252m [39m[38;5;252m-c[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252msort[39m[38;5;252m [39m[38;5;252m-nr[39m

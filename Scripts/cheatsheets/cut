@@ -1,0 +1,17 @@
+[48;5;8m[24m cheat:cut [24m[0m
+[38;5;246;03m# To cut out the third field of text or stdoutput that is delimited by a #:[39;00m
+[38;5;252mcut[39m[38;5;252m [39m[38;5;252m-d#[39m[38;5;252m [39m[38;5;252m-f3[39m
+
+[48;5;8m[24m tldr:cut [24m[0m
+[38;5;246;03m# cut[39;00m
+[38;5;246;03m# Cut out fields from `stdin` or files.[39;00m
+[38;5;246;03m# More information: <https://www.gnu.org/software/coreutils/cut>.[39;00m
+
+[38;5;246;03m# Print a specific character/field range of each line:[39;00m
+[38;5;31mcommand[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mcut[39m[38;5;252m [39m[38;5;252m--characters[39m[38;5;252m|[39m[38;5;87mfields[39m[38;5;252m=[39m[38;5;67m1[39m[38;5;252m|[39m[38;5;67m1[39m[38;5;252m,10[39m[38;5;252m|[39m[38;5;67m1[39m[38;5;252m-10[39m[38;5;252m|[39m[38;5;67m1[39m[38;5;252m-[39m[38;5;252m|[39m[38;5;252m-10[39m
+
+[38;5;246;03m# Print a range of each line with a specific delimiter:[39;00m
+[38;5;31mcommand[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mcut[39m[38;5;252m [39m[38;5;252m--delimiter[39m[38;5;252m=[39m[38;5;214m","[39m[38;5;252m [39m[38;5;252m--fields[39m[38;5;252m=[39m[38;5;67m1[39m
+
+[38;5;246;03m# Print a range of each line of the specific file:[39;00m
+[38;5;252mcut[39m[38;5;252m [39m[38;5;252m--characters[39m[38;5;252m=[39m[38;5;67m1[39m[38;5;252m [39m[38;5;252mpath/to/file[39m

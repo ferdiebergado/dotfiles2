@@ -1,0 +1,135 @@
+[48;5;8m[24m cheat:docker [24m[0m
+[38;5;246;03m# To start the docker daemon:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252m-d[39m
+
+[38;5;246;03m# To build a docker image:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mbuild[39m[38;5;252m [39m[38;5;252m-t[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mimage-tag-name>[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mpath-of-Dockerfile>[39m
+
+[38;5;246;03m# To start a container with an interactive shell:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mrun[39m[38;5;252m [39m[38;5;252m-ti[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mimage-name>[39m[38;5;252m [39m[38;5;252m/bin/bash[39m
+
+[38;5;246;03m# To run a docker container in the background:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mrun[39m[38;5;252m [39m[38;5;252m-d[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mimage-name>[39m
+
+[38;5;246;03m# To "shell" into a running container (docker-1.3+):[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;31mexec[39m[38;5;252m [39m[38;5;252m-ti[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mcontainer-name>[39m[38;5;252m [39m[38;5;252mbash[39m
+
+[38;5;246;03m# To inspect a running container:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252minspect[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mcontainer-name>[39m[38;5;252m [39m[38;5;252m([39m[38;5;252mor[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mcontainer-id>[39m[38;5;252m)[39m
+
+[38;5;246;03m# To get the process ID for a container:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252minspect[39m[38;5;252m [39m[38;5;252m--format[39m[38;5;252m [39m[38;5;252m{[39m[38;5;252m{[39m[38;5;252m.State.Pid[39m[38;5;252m}[39m[38;5;252m}[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mcontainer-name-or-id>[39m
+
+[38;5;246;03m# To list (and pretty-print) the current mounted volumes for a container:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252minspect[39m[38;5;252m [39m[38;5;252m--format[39m[38;5;252m=[39m[38;5;214m'{{json .Volumes}}'[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mcontainer-id>[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mpython[39m[38;5;252m [39m[38;5;252m-mjson.tool[39m
+
+[38;5;246;03m# To copy files/folders between a container and your host:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mcp[39m[38;5;252m [39m[38;5;252mfoo.txt[39m[38;5;252m [39m[38;5;252mmycontainer:/foo.txt[39m
+
+[38;5;246;03m# To list currently running containers:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mps[39m
+
+[38;5;246;03m# To list all containers:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mps[39m[38;5;252m [39m[38;5;252m-a[39m
+
+[38;5;246;03m# To remove all stopped containers:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mcontainer[39m[38;5;252m [39m[38;5;252mprune[39m
+
+[38;5;246;03m# To remove all stopped containers:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mrm[39m[38;5;252m [39m[38;5;70;01m$([39;00m[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mps[39m[38;5;252m [39m[38;5;252m-qa[39m[38;5;70;01m)[39;00m
+
+[38;5;246;03m# To list all images:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mimages[39m
+
+[38;5;246;03m# To only see all images id:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mimage[39m[38;5;252m [39m[38;5;252mls[39m[38;5;252m [39m[38;5;252m-q[39m
+
+[38;5;246;03m# To remove all untagged images:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mrmi[39m[38;5;252m [39m[38;5;70;01m$([39;00m[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mimages[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mgrep[39m[38;5;252m [39m[38;5;214m"^<none>"[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mawk[39m[38;5;252m [39m[38;5;214m'{print $3}'[39m[38;5;70;01m)[39;00m
+
+[38;5;246;03m# To remove all volumes not used by at least one container:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mvolume[39m[38;5;252m [39m[38;5;252mprune[39m
+
+[38;5;246;03m# To save image as tar archive:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252msave[39m[38;5;252m [39m[38;5;252m-o[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252marchive-name>.tar[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mimage-name>[39m
+
+[38;5;246;03m# To restore image from a saved tar archive:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mload[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252marchive-name>.tar[39m
+
+[38;5;246;03m# To remove an image:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mimage[39m[38;5;252m [39m[38;5;252mrm[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mimage-name-or-id>[39m
+
+[38;5;246;03m# To tag an image:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mimage[39m[38;5;252m [39m[38;5;252mtag[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mimage-name>:[39m[38;5;252m<[39m[38;5;252mtag-name>[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mimage-name>:[39m[38;5;252m<[39m[38;5;252mnew-tag-name>[39m
+
+[38;5;246;03m# To login into hub.docker.com:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mlogin[39m
+
+[38;5;246;03m# To push a docker image into dockerhub repository:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mpush[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mimage-name>:[39m[38;5;252m<[39m[38;5;252mimage-tag-name>[39m
+
+[38;5;246;03m# List all networks daemon knows about:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mnetwork[39m[38;5;252m [39m[38;5;252mls[39m
+
+[38;5;246;03m# Create a specific network:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mnetwork[39m[38;5;252m [39m[38;5;252mcreate[39m[38;5;252m [39m[38;5;214m"<network_name>"[39m
+
+[38;5;246;03m# Connect a specific container to a network:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mnetwork[39m[38;5;252m [39m[38;5;252mconnect[39m[38;5;252m [39m[38;5;214m"<network_id|name>"[39m[38;5;252m [39m[38;5;214m"<container_id|name>"[39m
+
+[38;5;246;03m# Disconnect a specific container from network:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mnetwork[39m[38;5;252m [39m[38;5;252mdisconnect[39m[38;5;252m [39m[38;5;214m"<network_id|name>"[39m[38;5;252m [39m[38;5;214m"<container_id|name>"[39m
+
+[38;5;246;03m# To see the logs of a background or stopped container:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mlogs[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mcontainer-id>[39m
+
+[38;5;246;03m# To publish a port of container on localhost:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mrun[39m[38;5;252m [39m[38;5;252m-p[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mlocalhost-port>:[39m[38;5;252m<[39m[38;5;252mcontainer-port>[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mimage-name>[39m
+
+[38;5;246;03m# To create a docker volume:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mvolume[39m[38;5;252m [39m[38;5;252mcreate[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mvolume-name>[39m
+
+[38;5;246;03m# To see information of a docker volume:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mvolume[39m[38;5;252m [39m[38;5;252minspect[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mvolume-name>[39m
+
+[38;5;246;03m# To use a volume in the container:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mrun[39m[38;5;252m [39m[38;5;252m-v[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mvolume-name>:[39m[38;5;252m<[39m[38;5;252mfolder-path-in-container>[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mimage>[39m
+
+[38;5;246;03m# To link current folder between host and container for development:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mrun[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mimage-name>[39m[38;5;252m [39m[38;5;252m-v[39m[38;5;252m [39m[38;5;70;01m$([39;00m[38;5;31mpwd[39m[38;5;70;01m)[39;00m[38;5;252m:[39m[38;5;252m<[39m[38;5;252mfolder-path-in-container>[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mimage>[39m
+
+[38;5;246;03m# To copy a file from the running container to host mechine:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mcp[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mcontainer-id>:[39m[38;5;252m<[39m[38;5;252mpath/to/file>[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mhost/copy/path>[39m
+
+[38;5;246;03m# To copy a file from host mechine to the running container:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mcp[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mhost/copy/path>[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mcontainer-id>:[39m[38;5;252m<[39m[38;5;252mpath/to/file>[39m
+
+[48;5;8m[24m tldr:docker [24m[0m
+[38;5;246;03m# docker[39;00m
+[38;5;246;03m# Manage Docker containers and images.[39;00m
+[38;5;246;03m# Some subcommands such as `docker run` have their own usage documentation.[39;00m
+[38;5;246;03m# More information: <https://docs.docker.com/engine/reference/commandline/cli/>.[39;00m
+
+[38;5;246;03m# List all docker containers (running and stopped):[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mps[39m[38;5;252m [39m[38;5;252m--all[39m
+
+[38;5;246;03m# Start a container from an image, with a custom name:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mrun[39m[38;5;252m [39m[38;5;252m--name[39m[38;5;252m [39m[38;5;252mcontainer_name[39m[38;5;252m [39m[38;5;252mimage[39m
+
+[38;5;246;03m# Start or stop an existing container:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mstart[39m[38;5;252m|[39m[38;5;252mstop[39m[38;5;252m [39m[38;5;252mcontainer_name[39m
+
+[38;5;246;03m# Pull an image from a docker registry:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mpull[39m[38;5;252m [39m[38;5;252mimage[39m
+
+[38;5;246;03m# Display the list of already downloaded images:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mimages[39m
+
+[38;5;246;03m# Open a shell inside a running container:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;31mexec[39m[38;5;252m [39m[38;5;252m-it[39m[38;5;252m [39m[38;5;252mcontainer_name[39m[38;5;252m [39m[38;5;252msh[39m
+
+[38;5;246;03m# Remove a stopped container:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mrm[39m[38;5;252m [39m[38;5;252mcontainer_name[39m
+
+[38;5;246;03m# Fetch and follow the logs of a container:[39;00m
+[38;5;252mdocker[39m[38;5;252m [39m[38;5;252mlogs[39m[38;5;252m [39m[38;5;252m-f[39m[38;5;252m [39m[38;5;252mcontainer_name[39m

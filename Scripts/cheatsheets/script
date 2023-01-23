@@ -1,0 +1,18 @@
+[38;5;246;03m# script[39;00m
+[38;5;246;03m# Make a typescript file of a terminal session.[39;00m
+[38;5;246;03m# More information: <https://manned.org/script>.[39;00m
+
+[38;5;246;03m# Start recording in file named "typescript":[39;00m
+[38;5;252mscript[39m
+
+[38;5;246;03m# Stop recording:[39;00m
+[38;5;31mexit[39m
+
+[38;5;246;03m# Start recording in a given file:[39;00m
+[38;5;252mscript[39m[38;5;252m [39m[38;5;252mlogfile.log[39m
+
+[38;5;246;03m# Append to an existing file:[39;00m
+[38;5;252mscript[39m[38;5;252m [39m[38;5;252m-a[39m[38;5;252m [39m[38;5;252mlogfile.log[39m
+
+[38;5;246;03m# Execute quietly without start and done messages:[39;00m
+[38;5;252mscript[39m[38;5;252m [39m[38;5;252m-q[39m[38;5;252m [39m[38;5;252mlogfile.log[39m

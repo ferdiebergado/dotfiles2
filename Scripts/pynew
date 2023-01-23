@@ -1,0 +1,57 @@
+#!/usr/bin/zsh
+
+target="$HOME/Projects/workspace/python/$1"
+
+if [ -d $target ]; then
+    >&2 echo "Directory exists"
+    exit 1
+fi
+
+mkdir $target
+cd $target
+
+echo -n "Creating virtual environment... "
+python -m venv .venv
+echo "done."
+
+echo -n "Switching to the virtual environment... "
+source .venv/bin/activate
+echo "done."
+
+echo -n "Installing pytest..."
+python -m pip install pytest &
+
+cat <<EOF> test_main.py
+import main
+
+def test_main():
+	actual=None
+	expected=None
+
+	assert actual == expected
+EOF
+
+cat <<EOF> main.py
+def main():
+    pass
+
+if __name__ == "__main__":
+    main()
+EOF
+
+cat <<EOF> exp.txt
+STEP 1
+
+STEP 2
+
+STEP 3
+
+STEP 4
+
+STEP 5
+
+NOTE:
+- Please ask questions if you need to clarify something.  Thank you.
+EOF
+
+code .

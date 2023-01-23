@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd ~/Projects/python/streamer 
+
+source .venv/bin/activate
+
+python streamer.py

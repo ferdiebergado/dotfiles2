@@ -1,0 +1,103 @@
+[48;5;8m[24m cheat.sheets:ffmpeg [24m[0m
+[38;5;246;03m# ffmpeg[39;00m
+[38;5;246;03m# Tools for transcoding, streaming and playing of multimedia files[39;00m
+
+[38;5;246;03m# Convert IN_FILE to OUT_FILE, based on its extension. So, if your IN_FILE has[39;00m
+[38;5;246;03m# the `.mp3` extension and your OUT_FILE has the `.ogg` extension, then your[39;00m
+[38;5;246;03m# file will be converted -- but original kept in-tact -- to an OGG file.[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252mIN_FILE[39m[38;5;252m [39m[38;5;252mOUT_FILE[39m
+[38;5;246;03m# Remove the original upon successful completion of ffmpeg(1).[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252mIN_FILE[39m[38;5;252m [39m[38;5;252mOUT_FILE[39m[38;5;252m [39m[38;5;252m&&[39m[38;5;252m [39m[38;5;252mrm[39m[38;5;252m [39m[38;5;252m-v[39m[38;5;252m [39m[38;5;252mIN_FILE[39m
+
+[38;5;246;03m# Convert all MP3s in the CWD to OGGs, deleting the originals when successfully[39;00m
+[38;5;246;03m# converted. This will be a huge time-saver! Note that this is Bash syntax.[39;00m
+[38;5;246;03m# By the way, this example works non-recursively.[39;00m
+[38;5;70;01mfor[39;00m[38;5;252m [39m[38;5;252mFile[39m[38;5;252m [39m[38;5;252min[39m[38;5;252m [39m[38;5;252m*.mp3[39m[38;5;252m;[39m[38;5;252m [39m[38;5;252m{[39m[38;5;252m [39m[38;5;252m[[39m[38;5;252m [39m[38;5;252m-f[39m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$File[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252m][39m[38;5;252m [39m[38;5;252m||[39m[38;5;252m [39m[38;5;70;01mcontinue[39;00m[38;5;252m;[39m[38;5;252m [39m[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$File[39m[38;5;214m"[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214m${[39m[38;5;87mFile[39m[38;5;252m%.mp3[39m[38;5;214m}[39m[38;5;214m.ogg[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252m&&[39m[38;5;252m [39m[38;5;252mrm[39m[38;5;252m [39m[38;5;252m-v[39m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$File[39m[38;5;214m"[39m[38;5;252m;[39m[38;5;252m [39m[38;5;252m}[39m
+
+[38;5;246;03m# Obviously ffmpeg(1) works with audio files, but it can also work on images.[39;00m
+[38;5;246;03m# This example will convert a JPEG image to the PNG format.[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252mImageFile.jpg[39m[38;5;252m [39m[38;5;252mImageFile.png[39m
+
+[38;5;246;03m# By default, ffmpeg(1) is really verbose, so shut it up, displaying only the[39;00m
+[38;5;246;03m# more important information, by using the `-v` flag, followed by its `0`[39;00m
+[38;5;246;03m# argument; this argument means that only 'panic' messages will be shown. Refer[39;00m
+[38;5;246;03m# to the ffmpeg(1) man page for more information on these levels of logging.[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-v[39m[38;5;252m [39m[38;5;67m0[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252mIN_FILE[39m[38;5;252m [39m[38;5;252mOUT_FILE[39m
+
+[38;5;246;03m# If you want to see ongoing but not over-the-top statistics for the file on[39;00m
+[38;5;246;03m# which ffmpeg(1) is currently working, you can make use of the `-stats` flag.[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-stats[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252mIN_FILE[39m[38;5;252m [39m[38;5;252mOUT_FILE[39m
+
+[48;5;8m[24m cheat:ffmpeg [24m[0m
+[38;5;246;03m# To print file metadata:[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252mfile>[39m
+
+[38;5;246;03m# To convert all m4a files to mp3[39;00m
+[38;5;70;01mfor[39;00m[38;5;252m [39m[38;5;252mf[39m[38;5;252m [39m[38;5;252min[39m[38;5;252m [39m[38;5;252m*.m4a[39m[38;5;252m;[39m[38;5;252m [39m[38;5;70;01mdo[39;00m[38;5;252m [39m[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$f[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252m-acodec[39m[38;5;252m [39m[38;5;252mlibmp3lame[39m[38;5;252m [39m[38;5;252m-vn[39m[38;5;252m [39m[38;5;252m-b:a[39m[38;5;252m [39m[38;5;252m320k[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214m${[39m[38;5;87mf[39m[38;5;252m%.m4a[39m[38;5;214m}[39m[38;5;214m.mp3[39m[38;5;214m"[39m[38;5;252m;[39m[38;5;252m [39m[38;5;70;01mdone[39;00m
+
+[38;5;246;03m# To convert video from .foo to .bar[39;00m
+[38;5;246;03m# -g : GOP, for searchability[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252minput.foo[39m[38;5;252m [39m[38;5;252m-vcodec[39m[38;5;252m [39m[38;5;252mbar[39m[38;5;252m [39m[38;5;252m-acodec[39m[38;5;252m [39m[38;5;252mbaz[39m[38;5;252m [39m[38;5;252m-b:v[39m[38;5;252m [39m[38;5;252m21000k[39m[38;5;252m [39m[38;5;252m-b:a[39m[38;5;252m [39m[38;5;252m320k[39m[38;5;252m [39m[38;5;252m-g[39m[38;5;252m [39m[38;5;67m150[39m[38;5;252m [39m[38;5;252m-threads[39m[38;5;252m [39m[38;5;67m4[39m[38;5;252m [39m[38;5;252moutput.bar[39m
+
+[38;5;246;03m# To convert image sequence to video:[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-r[39m[38;5;252m [39m[38;5;67m18[39m[38;5;252m [39m[38;5;252m-pattern_type[39m[38;5;252m [39m[38;5;252mglob[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;214m'*.png'[39m[38;5;252m [39m[38;5;252m-b:v[39m[38;5;252m [39m[38;5;252m21000k[39m[38;5;252m [39m[38;5;252m-s[39m[38;5;252m [39m[38;5;252mhd1080[39m[38;5;252m [39m[38;5;252m-vcodec[39m[38;5;252m [39m[38;5;252mvp9[39m[38;5;252m [39m[38;5;252m-an[39m[38;5;252m [39m[38;5;252m-pix_fmt[39m[38;5;252m [39m[38;5;252myuv420p[39m[38;5;252m [39m[38;5;252m-deinterlace[39m[38;5;252m [39m[38;5;252moutput.ext[39m
+
+[38;5;246;03m# To combine video and audio into one file[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252mvideo.ext[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252maudio.ext[39m[38;5;252m [39m[38;5;252m-c:v[39m[38;5;252m [39m[38;5;252mcopy[39m[38;5;252m [39m[38;5;252m-c:a[39m[38;5;252m [39m[38;5;252mcopy[39m[38;5;252m [39m[38;5;252moutput.ext[39m
+
+[38;5;246;03m# To add ass subtitle to the video[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252minput_video.mp4[39m[38;5;252m [39m[38;5;252m-vf[39m[38;5;252m [39m[38;5;87mass[39m[38;5;252m=[39m[38;5;252msub.ass[39m[38;5;252m [39m[38;5;252moutput_video_subtitles.mp4[39m
+
+[38;5;246;03m# To convert webm to mp4[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252minput_video.webm[39m[38;5;252m [39m[38;5;252moutput_video.mp4[39m
+
+[38;5;246;03m# To convert mp4 to mov[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252minput_video.mp4[39m[38;5;252m [39m[38;5;252m-acodec[39m[38;5;252m [39m[38;5;252mcopy[39m[38;5;252m [39m[38;5;252m-vcodec[39m[38;5;252m [39m[38;5;252mcopy[39m[38;5;252m [39m[38;5;252m-f[39m[38;5;252m [39m[38;5;252mmov[39m[38;5;252m [39m[38;5;252moutput_video.mov[39m
+
+[38;5;246;03m# To convert mov to mp4[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252minput_video.mov[39m[38;5;252m [39m[38;5;252m-vcodec[39m[38;5;252m [39m[38;5;252mcopy[39m[38;5;252m [39m[38;5;252m-acodec[39m[38;5;252m [39m[38;5;252mcopy[39m[38;5;252m [39m[38;5;252moutput_video.mp4[39m
+
+[38;5;246;03m# Listen to 10 seconds of audio from a video file[39;00m
+[38;5;246;03m#[39;00m
+[38;5;246;03m# -ss : start time[39;00m
+[38;5;246;03m# -t  : seconds to cut[39;00m
+[38;5;246;03m# -autoexit : closes ffplay as soon as the audio finishes[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-ss[39m[38;5;252m [39m[38;5;67m00[39m[38;5;252m:34:24.85[39m[38;5;252m [39m[38;5;252m-t[39m[38;5;252m [39m[38;5;67m10[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252mpath/to/file.mp4[39m[38;5;252m [39m[38;5;252m-f[39m[38;5;252m [39m[38;5;252mmp3[39m[38;5;252m [39m[38;5;252mpipe:play[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mffplay[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252mpipe:play[39m[38;5;252m [39m[38;5;252m-autoexit[39m
+
+[38;5;246;03m# To combine audio and video from N files:[39;00m
+[38;5;246;03m# See also https://stackoverflow.com/questions/7333232/how-to-concatenate-two-mp4-files-using-ffmpeg[39;00m
+[38;5;252mcat[39m[38;5;252m [39m[38;5;252mmylist.txt[39m
+[38;5;252mfile[39m[38;5;252m [39m[38;5;214m'/path/to/file1'[39m
+[38;5;252mfile[39m[38;5;252m [39m[38;5;214m'/path/to/file2'[39m
+[38;5;252mfile[39m[38;5;252m [39m[38;5;214m'/path/to/file3'[39m
+[38;5;252m    [39m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-f[39m[38;5;252m [39m[38;5;252mconcat[39m[38;5;252m [39m[38;5;252m-safe[39m[38;5;252m [39m[38;5;67m0[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252mmylist.txt[39m[38;5;252m [39m[38;5;252m-c[39m[38;5;252m [39m[38;5;252mcopy[39m[38;5;252m [39m[38;5;252moutput.mp4[39m
+
+[48;5;8m[24m tldr:ffmpeg [24m[0m
+[38;5;246;03m# ffmpeg[39;00m
+[38;5;246;03m# Video conversion tool.[39;00m
+[38;5;246;03m# More information: <https://ffmpeg.org>.[39;00m
+
+[38;5;246;03m# Extract the sound from a video and save it as MP3:[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252mvideo.mp4[39m[38;5;252m [39m[38;5;252m-vn[39m[38;5;252m [39m[38;5;252msound.mp3[39m
+
+[38;5;246;03m# Save a video as GIF, scaling the height to 1000px and setting framerate to 15:[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252mvideo.mp4[39m[38;5;252m [39m[38;5;252m-vf[39m[38;5;252m [39m[38;5;214m'scale=-1:1000'[39m[38;5;252m [39m[38;5;252m-r[39m[38;5;252m [39m[38;5;67m15[39m[38;5;252m [39m[38;5;252moutput.gif[39m
+
+[38;5;246;03m# Combine numbered images (`frame_1.jpg`, `frame_2.jpg`, etc) into a video or GIF:[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252mframe_%d.jpg[39m[38;5;252m [39m[38;5;252m-f[39m[38;5;252m [39m[38;5;252mimage2[39m[38;5;252m [39m[38;5;252mvideo.mpg[39m[38;5;252m|[39m[38;5;252mvideo.gif[39m
+
+[38;5;246;03m# Quickly extract a single frame from a video at time mm:ss and save it as a 128x128 resolution image:[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-ss[39m[38;5;252m [39m[38;5;252mmm:ss[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252mvideo.mp4[39m[38;5;252m [39m[38;5;252m-frames[39m[38;5;252m [39m[38;5;67m1[39m[38;5;252m [39m[38;5;252m-s[39m[38;5;252m [39m[38;5;252m128x128[39m[38;5;252m [39m[38;5;252m-f[39m[38;5;252m [39m[38;5;252mimage2[39m[38;5;252m [39m[38;5;252mimage.png[39m
+
+[38;5;246;03m# Trim a video from a given start time mm:ss to an end time mm2:ss2 (omit the -to flag to trim till the end):[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-ss[39m[38;5;252m [39m[38;5;252mmm:ss[39m[38;5;252m [39m[38;5;252m-to[39m[38;5;252m [39m[38;5;252mmm2:ss2[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252mvideo.mp4[39m[38;5;252m [39m[38;5;252m-codec[39m[38;5;252m [39m[38;5;252mcopy[39m[38;5;252m [39m[38;5;252moutput.mp4[39m
+
+[38;5;246;03m# Convert AVI video to MP4. AAC Audio @ 128kbit, h264 Video @ CRF 23:[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252minput_video.avi[39m[38;5;252m [39m[38;5;252m-codec:audio[39m[38;5;252m [39m[38;5;252maac[39m[38;5;252m [39m[38;5;252m-b:audio[39m[38;5;252m [39m[38;5;252m128k[39m[38;5;252m [39m[38;5;252m-codec:video[39m[38;5;252m [39m[38;5;252mlibx264[39m[38;5;252m [39m[38;5;252m-crf[39m[38;5;252m [39m[38;5;67m23[39m[38;5;252m [39m[38;5;252moutput_video.mp4[39m
+
+[38;5;246;03m# Remux MKV video to MP4 without re-encoding audio or video streams:[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252minput_video.mkv[39m[38;5;252m [39m[38;5;252m-codec[39m[38;5;252m [39m[38;5;252mcopy[39m[38;5;252m [39m[38;5;252moutput_video.mp4[39m
+
+[38;5;246;03m# Convert MP4 video to VP9 codec. For the best quality, use a CRF value (recommended range 15-35) and -b:video MUST be 0:[39;00m
+[38;5;252mffmpeg[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;252minput_video.mp4[39m[38;5;252m [39m[38;5;252m-codec:video[39m[38;5;252m [39m[38;5;252mlibvpx-vp9[39m[38;5;252m [39m[38;5;252m-crf[39m[38;5;252m [39m[38;5;67m30[39m[38;5;252m [39m[38;5;252m-b:video[39m[38;5;252m [39m[38;5;67m0[39m[38;5;252m [39m[38;5;252m-codec:audio[39m[38;5;252m [39m[38;5;252mlibopus[39m[38;5;252m [39m[38;5;252m-vbr[39m[38;5;252m [39m[38;5;252mon[39m[38;5;252m [39m[38;5;252m-threads[39m[38;5;252m [39m[38;5;252mnumber_of_threads[39m[38;5;252m [39m[38;5;252moutput_video.webm[39m

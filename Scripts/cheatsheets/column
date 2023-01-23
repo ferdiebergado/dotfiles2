@@ -1,0 +1,16 @@
+[38;5;246;03m# column[39;00m
+[38;5;246;03m# Format standard input or a file into multiple columns.[39;00m
+[38;5;246;03m# Columns are filled before rows; the default separator is a whitespace.[39;00m
+[38;5;246;03m# More information: <https://manned.org/column>.[39;00m
+
+[38;5;246;03m# Format the output of a command for a 30 characters wide display:[39;00m
+[38;5;31mprintf[39m[38;5;252m [39m[38;5;214m"header1 header2\nbar foo\n"[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mcolumn[39m[38;5;252m [39m[38;5;252m--output-width[39m[38;5;252m [39m[38;5;67m30[39m
+
+[38;5;246;03m# Split columns automatically and auto-align them in a tabular format:[39;00m
+[38;5;31mprintf[39m[38;5;252m [39m[38;5;214m"header1 header2\nbar foo\n"[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mcolumn[39m[38;5;252m [39m[38;5;252m--table[39m
+
+[38;5;246;03m# Specify the column delimiter character for the `--table` option (e.g. "," for CSV) (defaults to whitespace):[39;00m
+[38;5;31mprintf[39m[38;5;252m [39m[38;5;214m"header1,header2\nbar,foo\n"[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mcolumn[39m[38;5;252m [39m[38;5;252m--table[39m[38;5;252m [39m[38;5;252m--separator[39m[38;5;252m [39m[38;5;252m,[39m
+
+[38;5;246;03m# Fill rows before filling columns:[39;00m
+[38;5;31mprintf[39m[38;5;252m [39m[38;5;214m"header1\nbar\nfoobar\n"[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mcolumn[39m[38;5;252m [39m[38;5;252m--output-width[39m[38;5;252m [39m[38;5;67m30[39m[38;5;252m [39m[38;5;252m--fillrows[39m

@@ -1,0 +1,9 @@
+[Unit]
+Description=Run eyebreak service every 20 minutes
+
+[Timer]
+OnBootSec=20m
+OnUnitActiveSec=20min
+
+[Install]
+WantedBy=timers.target
