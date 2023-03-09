@@ -420,6 +420,8 @@ local servers = {
 	cssls = {},
 	phpactor = {},
 	yamlls = {},
+	gopls = {},
+	sqlls = {},
 }
 
 -- Setup neovim lua configuration

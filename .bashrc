@@ -44,7 +44,7 @@ export HISTCONTROL=ignoredups:ignorespace
 #export HISTCONTROL=ignorespace
 
 # add timestamp to history
-export HISTTIMEFORMAT="%F %T "
+# export HISTTIMEFORMAT="%F %T "
 
 # add GPG key
 export GPG_TTY=$(tty)
@@ -81,7 +81,7 @@ trap 'history -a' SIGHUP
 
 update_title() {
     if [[ -n "$BASH_COMMAND" ]]; then
-        echo -en "\033]0;"$(basename "${PWD}")"\007"
+        echo -en "\033]0;$(basename "${PWD}")\007"
     fi
 }
 

@@ -7,7 +7,7 @@ load_plugin() {
 }
 
 # Use bash-completion, if available
-load_plugin /usr/share/bash-completion/bash_completion
+#load_plugin /usr/share/bash-completion/bash_completion
 
 # use command not found, if available
 load_plugin /usr/share/doc/pkgfile/command-not-found.bash

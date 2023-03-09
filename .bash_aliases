@@ -1,4 +1,4 @@
-# vim:ft=conf
+# vim:ft=sh
 
 # enable color support for common commands
 alias ls='ls --color=auto'
@@ -18,6 +18,7 @@ alias which='command -v'
 alias e=nvim
 alias se=sudoedit
 alias md=mkdir
+alias h=helix
 
 # git
 alias gitc='git clone'

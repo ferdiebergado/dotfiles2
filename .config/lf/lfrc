@@ -300,3 +300,4 @@ map gn cd ~/.config/nvim
 map gm cd ~/Music
 map gp cd ~/Pictures
 map gl cd ~/.local
+map gf cd ~/Projects

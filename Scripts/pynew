@@ -1,27 +1,27 @@
-#!/usr/bin/zsh
+#!/usr/bin/bash
 
-target="$HOME/Projects/workspace/python/$1"
+target="$HOME/Workspace/python/$1"
 
-if [ -d $target ]; then
-    >&2 echo "Directory exists"
+if [ -d "$target" ]; then
+    echo >&2 "Directory exists"
     exit 1
 fi
 
-mkdir $target
-cd $target
+mkdir "$target"
+cd "$target" || exit
 
 echo -n "Creating virtual environment... "
 python -m venv .venv
 echo "done."
 
 echo -n "Switching to the virtual environment... "
-source .venv/bin/activate
+. .venv/bin/activate
 echo "done."
 
 echo -n "Installing pytest..."
-python -m pip install pytest &
+python -m pip install pytest
 
-cat <<EOF> test_main.py
+cat <<EOF >test_main.py
 import main
 
 def test_main():
@@ -31,7 +31,7 @@ def test_main():
 	assert actual == expected
 EOF
 
-cat <<EOF> main.py
+cat <<EOF >main.py
 def main():
     pass
 
@@ -39,7 +39,7 @@ if __name__ == "__main__":
     main()
 EOF
 
-cat <<EOF> exp.txt
+cat <<EOF >exp.txt
 STEP 1
 
 STEP 2
@@ -54,4 +54,4 @@ NOTE:
 - Please ask questions if you need to clarify something.  Thank you.
 EOF
 
-code .
+helix main.py
